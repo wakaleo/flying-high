@@ -1,0 +1,98 @@
+[
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "SYD",
+        "name": "Sydney",
+        "country": "Australia"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "MLB",
+        "name": "Melbourne",
+        "country": "Australia"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "BNE",
+        "name": "Brisbane",
+        "country": "Australia"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "PER",
+        "name": "Perth",
+        "country": "Australia"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "SFO",
+        "name": "San Francisco",
+        "country": "USA"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "LAX",
+        "name": "Los Angeles",
+        "country": "USA"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "HKG",
+        "name": "Hong Kong",
+        "country": "Hong Kong"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "SIN",
+        "name": "Singapore",
+        "country": "Singapore"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "PEK",
+        "name": "Beijing",
+        "country": "China"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "AKL",
+        "name": "Auckland",
+        "country": "New Zealand"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "WLG",
+        "name": "Wellington",
+        "country": "New Zealand"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "CHC",
+        "name": "Christchurch",
+        "country": "New Zealand"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "LHR",
+        "name": "London",
+        "country": "UK"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "CDG",
+        "name": "Paris",
+        "country": "France"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "FCO",
+        "name": "Rome",
+        "country": "Italy"
+    },
+    {
+        "_class" : "flyinghigh.services.flights.domain.Airport",
+        "code": "DXB",
+        "name": "Dubai",
+        "country": "UAE"
+    }
+]
