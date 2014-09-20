@@ -115,6 +115,13 @@ cloudfoundry {
     file = file("${jar.archivePath}")
     uri = 'http://flights.cfapps.io'
     buildpack = 'https://github.com/cloudfoundry/java-buildpack'
+    services {
+        'my-mongodb' {
+            label = 'flyinghigh'
+            plan = 'sandbox'
+            bind = true
+        }
+    }
 }
 
 class ThucydidesPlugin implements Plugin<Project> {
