@@ -116,8 +116,8 @@ cloudfoundry {
     uri = 'http://flights.cfapps.io'
     buildpack = 'https://github.com/cloudfoundry/java-buildpack'
     services {
-        'my-mongodb' {
-            label = 'flyinghigh'
+        'mongodb' {
+            label = 'mongolab'
             plan = 'sandbox'
             bind = true
         }
