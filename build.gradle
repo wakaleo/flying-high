@@ -57,7 +57,7 @@ dependencies {
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7"
     testCompile 'org.easytesting:fest-assert-core:2.0M10'
-    testCompile 'net.thucydides:thucydides-core:0.9.270-SNAPSHOT'
+    testCompile 'net.thucydides:thucydides-core:0.9.269'
     testCompile 'net.thucydides:thucydides-jbehave-plugin:0.9.268'
 
 }
