@@ -124,6 +124,7 @@ if (project.hasProperty('production')) {
 
 cloudfoundry {
     target = 'https://api.run.pivotal.io'
+    application = 'flights'
     username = 'john.smart@wakaleo.com'
     password = 'nos-bak-yac-yu-i'
     file = file("${jar.archivePath}")
