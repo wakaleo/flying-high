@@ -109,13 +109,24 @@ clean{
     delete "target"
 }
 
+if (project.hasProperty('production')) {
+    cloudfoundry {
+        space = 'production'
+        uri = 'http://prod-flights.cfapps.io'
+    }
+} else {
+    cloudfoundry {
+        space = 'development'
+        uri = 'http://dev-flights.cfapps.io'
+    }
+}
+
+
 cloudfoundry {
     target = 'https://api.run.pivotal.io'
-    space = 'development'
     username = 'john.smart@wakaleo.com'
     password = 'nos-bak-yac-yu-i'
     file = file("${jar.archivePath}")
-    uri = 'http://flights.cfapps.io'
     buildpack = 'https://github.com/cloudfoundry/java-buildpack'
     services {
         'mongodb' {

@@ -2,7 +2,6 @@ package flyinghigh.services.flights;
 
 import flyinghigh.services.flights.domain.Airport;
 import flyinghigh.services.flights.repositories.AirportRepository;
-import flyinghigh.services.flights.services.DatabaseSetup;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,10 +30,6 @@ public class LookingUpAirportsIT {
     @Autowired
     private AirportRepository airportRepository;
 
-    @Autowired
-    private DatabaseSetup databaseSetup;
-
-
     @Value("${local.server.port}")
     private int port;
 
@@ -46,8 +41,6 @@ public class LookingUpAirportsIT {
     public void configureBaseUrl() {
         baseUrl = "http://localhost:" + port;
         restTemplate = new RestTemplate();
-
-        databaseSetup.initializeAirports();
     }
 
     @Test
