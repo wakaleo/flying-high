@@ -47,6 +47,13 @@ test {
 }
 
 task integrationTests(type: Test) {
+    systemProperty 'mongodb.host','ds039020.mongolab.com'
+    systemProperty 'mongodb.port','39020'
+    systemProperty 'mongodb.database','flyinghigh-integration'
+    systemProperty 'mongodb.username','flyinghigh'
+    systemProperty 'mongodb.password','flyinghigh'
+
+
     include '**/*IT.class'
     testLogging {
         events "passed", "skipped", "failed"
