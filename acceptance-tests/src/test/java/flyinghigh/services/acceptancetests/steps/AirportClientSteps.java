@@ -1,12 +1,17 @@
 package flyinghigh.services.acceptancetests.steps;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableList;
 import flyinghigh.services.flights.domain.Airport;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.util.SystemEnvironmentVariables;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.hateoas.Resource;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -38,16 +43,6 @@ public class AirportClientSteps {
 
     @Step
     public List<Airport> listAllAirports(String path) {
-        String response = restTemplate.getForObject(getBaseFlightUrl() + path, String.class);
-//        ResponseEntity<Resource<List<Airport>>> responseEntity
-//                 = restTemplate.exchange(baseUrl + path,
-//                                         HttpMethod.GET, null,
-//                                         new ParameterizedTypeReference<Resource<List<Airport>>>() {}, Collections.emptyMap());
-//        if (responseEntity.getStatusCode() == HttpStatus.OK) {
-//            Resource<List<Airport>> airports = responseEntity.getBody();
-//            return airports.getContent();
-//        }
-        return null;
-
+        return ImmutableList.copyOf(restTemplate.getForEntity(getBaseFlightUrl() + path, Airport[].class).getBody());
     }
 }

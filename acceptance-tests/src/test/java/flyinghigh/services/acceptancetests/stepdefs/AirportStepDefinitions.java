@@ -1,5 +1,6 @@
 package flyinghigh.services.acceptancetests.stepdefs;
 
+import com.google.common.collect.Lists;
 import flyinghigh.services.acceptancetests.steps.AirportClientSteps;
 import flyinghigh.services.flights.domain.Airport;
 import net.thucydides.core.annotations.Steps;
@@ -9,8 +10,10 @@ import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
 
 import java.util.List;
+import java.util.Map;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.fest.assertions.api.Assertions.assertThat;
+
 
 /**
  * Created by john on 17/09/2014.
@@ -28,13 +31,20 @@ public class AirportStepDefinitions {
 
     @When("I ask for a list of airports")
     public void whenIAskForAListOfAirports() {
-        retrievedAirports = airportClientSteps.listAllAirports("/airports");
+        retrievedAirports = airportClientSteps.listAllAirports("/reference/airports");
     }
 
 
 
     @Then("I should obtain at least the following: $expectedAirports")
     public void thenIShouldObtainAtLeastTheFollowing(ExamplesTable expectedAirports) {
-        assertThat(retrievedAirports).isNotEmpty();
+        List<Airport> expected = Lists.newArrayList();
+        for(Map<String, String> airportFields : expectedAirports.getRows()) {
+            expected.add(new Airport(airportFields.get("country"),
+                        airportFields.get("city"),
+                        airportFields.get("code")));
+
+        }
+        assertThat(retrievedAirports).containsAll(expected);
     }
 }

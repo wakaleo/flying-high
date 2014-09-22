@@ -27,7 +27,7 @@ dependencies {
     compile("org.springframework.data:spring-data-mongodb")
     compile("org.springframework.data:spring-data-rest-webmvc")
 
-    compile("com.wakaleo.flying-high:flights-service:0.1.0")
+    compile project(":flights-web-service")
     testCompile("org.spockframework:spock-core:0.7-groovy-2.0")
     testCompile("junit:junit")
     testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7"

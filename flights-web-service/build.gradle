@@ -3,7 +3,7 @@ apply plugin: 'cloudfoundry'
 
 jar {
     baseName = 'flights-service'
-    version =  '0.1.0'
+    version =  '1.0.0'
 }
 group = "com.wakaleo.flying-high"
 
@@ -47,11 +47,21 @@ test {
 }
 
 task integrationTests(type: Test) {
-    systemProperty 'mongodb.host','ds039020.mongolab.com'
-    systemProperty 'mongodb.port','39020'
-    systemProperty 'mongodb.database','flyinghigh-integration'
-    systemProperty 'mongodb.username','flyinghigh'
-    systemProperty 'mongodb.password','flyinghigh'
+//    reports.html.destination = file("$buildDir/reports/integration-tests")
+
+    if (project.hasProperty('localhost')) {
+        systemProperty 'mongodb.host', 'localhost'
+        systemProperty 'mongodb.port', '27017'
+        systemProperty 'mongodb.database', 'flyinghigh'
+        systemProperty 'mongodb.username', ''
+        systemProperty 'mongodb.password', ''
+    } else {
+        systemProperty 'mongodb.host', 'ds039020.mongolab.com'
+        systemProperty 'mongodb.port', '39020'
+        systemProperty 'mongodb.database', 'flyinghigh-integration'
+        systemProperty 'mongodb.username', 'flyinghigh'
+        systemProperty 'mongodb.password', 'flyinghigh'
+    }
 
 
     include '**/*IT.class'

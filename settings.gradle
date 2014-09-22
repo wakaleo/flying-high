@@ -1,1 +1,1 @@
-include 'web-service','acceptance-tests'
+include 'flights-web-service','acceptance-tests'
