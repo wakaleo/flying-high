@@ -2,7 +2,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'cloudfoundry'
 
 jar {
-    baseName = 'flights-service'
+    baseName = 'flights-web-service'
     version =  '1.0.0'
 }
 group = "com.wakaleo.flying-high"
