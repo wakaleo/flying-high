@@ -12,21 +12,21 @@ import java.util.List;
 public class DatabaseSetupImpl implements DatabaseSetup {
 
     private final static List<Airport> DEFAULT_AIRPORTS = ImmutableList.of(
-            new Airport("Australia", "Sydney", "SYD"),
-            new Airport("Australia", "Melbourne", "MLB"),
-            new Airport("Australia", "Brisbane", "BNE"),
-            new Airport("USA", "San Francisco", "SFO"),
-            new Airport("USA", "Los Angeles", "LAX"),
-            new Airport("Hong Kong", "Hong Kong", "HKG"),
-            new Airport("Singapore", "Singapore", "SIN"),
-            new Airport("China", "Beijing", "PEK"),
-            new Airport("New Zealand", "Auckland", "AKL"),
-            new Airport("New Zealand", "Wellington", "WLG"),
-            new Airport("New Zealand", "Christchurch", "CHC"),
-            new Airport("UK", "London", "LHR"),
-            new Airport("France", "Paris", "CDG"),
-            new Airport("Italy", "Rome", "FCO"),
-            new Airport("UAE", "Dubai", "DXB")
+            Airport.called("Sydney").inCountry("Australia").withCode("SYD"),
+            Airport.called("Sydney").inCountry("Melbourne").withCode("MLB"),
+            Airport.called("San Francisco").inCountry("USA").withCode("SFO"),
+            Airport.called("Los Angeles").inCountry("USA").withCode("LAX"),
+            Airport.called("Hong Kong").inCountry("Hong Kong").withCode("HKG"),
+            Airport.called("Singapore").inCountry("Singapore").withCode("SIN"),
+            Airport.called("Beijing").inCountry("China").withCode("PEK"),
+            Airport.called("Auckland").inCountry("New Zealand").withCode("AKL"),
+            Airport.called("Wellington").inCountry("New Zealand").withCode("WLG"),
+            Airport.called("Christchurch").inCountry("New Zealand").withCode("LHR"),
+            Airport.called("Christchurch").inCountry("New Zealand").withCode("LHR"),
+            Airport.called("Paris").inCountry("France").withCode("CDG"),
+            Airport.called("Nice").inCountry("France").withCode("NIC"),
+            Airport.called("Rome").inCountry("Italy").withCode("FCO"),
+            Airport.called("Dubai").inCountry("UAE").withCode("DXB")
     );
 
     private final AirportRepository airportRepository;

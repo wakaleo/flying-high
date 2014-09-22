@@ -1,9 +1,11 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 apply plugin: 'spring-boot'
 apply plugin: 'cloudfoundry'
 
 jar {
     baseName = 'flights-web-service'
-    version =  '1.0.0'
+    version = '1.0.0'
 }
 group = "com.wakaleo.flying-high"
 
@@ -42,12 +44,11 @@ test {
     exclude '**/*IT.class'
 
     testLogging {
-        events "passed","skipped","failed"
+        events "passed", "skipped", "failed"
     }
 }
 
 task integrationTests(type: Test) {
-//    reports.html.destination = file("$buildDir/reports/integration-tests")
 
     if (project.hasProperty('localhost')) {
         systemProperty 'mongodb.host', 'localhost'
@@ -63,15 +64,20 @@ task integrationTests(type: Test) {
         systemProperty 'mongodb.password', 'flyinghigh'
     }
 
-
     include '**/*IT.class'
     testLogging {
         events "passed", "skipped", "failed"
     }
 }
-
-integrationTests.mustRunAfter test
+integrationTests.dependsOn test
 check.dependsOn integrationTests
+
+processResources {
+    filter ReplaceTokens, tokens: [
+        "application.version": project.jar.version,
+        "build.number": buildNumber
+    ]
+}
 
 if (project.hasProperty('production')) {
     cloudfoundry {

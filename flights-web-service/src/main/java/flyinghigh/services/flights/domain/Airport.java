@@ -25,6 +25,12 @@ public class Airport {
         this.code = code;
     }
 
+    public static AirportBuilder called(String name) {
+        return new AirportBuilder(name);
+    }
+
+
+
     public String getId() {
         return id;
     }
@@ -71,5 +77,34 @@ public class Airport {
                 ", name='" + name + '\'' +
                 ", country='" + country + '\'' +
                 '}';
+    }
+
+    public static class AirportBuilder {
+        public String name;
+
+        public AirportBuilder(String name) {
+            this.name = name;
+        }
+
+        public FinalizedAirportBuilder inCountry(String country) {
+            return new FinalizedAirportBuilder(name, country);
+        }
+
+
+    }
+
+    public static class FinalizedAirportBuilder {
+        public String name;
+        public String country;
+
+        public FinalizedAirportBuilder(String name, String country) {
+            this.name = name;
+            this.country = country;
+        }
+
+
+        public Airport withCode(String code) {
+            return new Airport(country, name, code);
+        }
     }
 }

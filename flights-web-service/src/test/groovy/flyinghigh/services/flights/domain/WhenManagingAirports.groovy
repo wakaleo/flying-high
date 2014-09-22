@@ -1,7 +1,6 @@
 package flyinghigh.services.flights.domain
 
 import spock.lang.Specification
-import flyinghigh.services.flights.domain.Airport
 
 class WhenManagingAirports extends Specification {
     def "Airports have a name and a code"() {
@@ -11,5 +10,14 @@ class WhenManagingAirports extends Specification {
             airport.name == "Sydney"
         and:
             airport.code == "SYD"
+    }
+
+    def "Should be able to create airports easily"() {
+        when:
+            def airport = Airport.called("Sydney").inCountry("Australia").withCode("SYD")
+        then:
+            airport.name == "Sydney"
+            airport.code == "SYD"
+            airport.country == "Australia"
     }
 }
