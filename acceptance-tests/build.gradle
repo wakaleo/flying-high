@@ -11,7 +11,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE")
-        classpath("net.thucydides:thucydides-core:0.9.270-SNAPSHOT")
+        classpath("net.thucydides:thucydides-core:0.9.271")
     }
 }
 
@@ -32,8 +32,8 @@ dependencies {
     testCompile("junit:junit")
     testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7"
     testCompile 'org.easytesting:fest-assert-core:2.0M10'
-    testCompile 'net.thucydides:thucydides-core:0.9.270-SNAPSHOT'
-    testCompile 'net.thucydides:thucydides-jbehave-plugin:0.9.270-SNAPSHOT'
+    testCompile 'net.thucydides:thucydides-core:0.9.271'
+    testCompile 'net.thucydides:thucydides-jbehave-plugin:0.9.271'
 
 }
 

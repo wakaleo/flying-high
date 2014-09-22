@@ -9,7 +9,7 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE")
         classpath group: 'org.cloudfoundry', name: 'cf-gradle-plugin', version: '1.0.4'
-        classpath("net.thucydides:thucydides-core:0.9.270-SNAPSHOT")
+        classpath("net.thucydides:thucydides-core:0.9.271")
     }
 }
 
