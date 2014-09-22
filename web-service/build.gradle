@@ -1,0 +1,85 @@
+apply plugin: 'spring-boot'
+apply plugin: 'cloudfoundry'
+
+jar {
+    baseName = 'flights-service'
+    version =  '0.1.0'
+}
+group = "com.wakaleo.flying-high"
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            parent {
+                groupId 'org.springframework.boot'
+                artifactId 'spring-boot-starter-parent'
+                version "1.1.6.RELEASE"
+            }
+        }
+    }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.data:spring-data-mongodb")
+    compile("org.springframework.data:spring-data-rest-webmvc")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.codehaus.groovy:groovy-all:2.3.6")
+    compile("com.google.guava:guava:18.0")
+
+    testCompile("org.spockframework:spock-core:0.7-groovy-2.0")
+    testCompile("junit:junit")
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7"
+    testCompile 'org.easytesting:fest-assert-core:2.0M10'
+}
+
+test {
+    maxParallelForks 4
+    useJUnit()
+
+    include '**/When*.class'
+    exclude '**/*IT.class'
+
+    testLogging {
+        events "passed","skipped","failed"
+    }
+}
+
+task integrationTests(type: Test) {
+    include '**/*IT.class'
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+integrationTests.mustRunAfter test
+check.dependsOn integrationTests
+
+if (project.hasProperty('production')) {
+    cloudfoundry {
+        space = 'production'
+        uri = 'http://prod-flights.cfapps.io'
+    }
+} else {
+    cloudfoundry {
+        space = 'development'
+        uri = 'http://dev-flights.cfapps.io'
+    }
+}
+
+cloudfoundry {
+    target = 'https://api.run.pivotal.io'
+    application = 'flights'
+    username = 'john.smart@wakaleo.com'
+    password = 'nos-bak-yac-yu-i'
+    file = file("${jar.archivePath}")
+    buildpack = 'https://github.com/cloudfoundry/java-buildpack'
+    services {
+        'mongodb' {
+            label = 'mongolab'
+            plan = 'sandbox'
+            bind = true
+        }
+    }
+}

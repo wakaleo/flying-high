@@ -10,6 +10,8 @@ import org.jbehave.core.model.ExamplesTable;
 
 import java.util.List;
 
+import static org.fest.assertions.Assertions.assertThat;
+
 /**
  * Created by john on 17/09/2014.
  */
@@ -29,8 +31,10 @@ public class AirportStepDefinitions {
         retrievedAirports = airportClientSteps.listAllAirports("/airports");
     }
 
+
+
     @Then("I should obtain at least the following: $expectedAirports")
     public void thenIShouldObtainAtLeastTheFollowing(ExamplesTable expectedAirports) {
-        // PENDING
+        assertThat(retrievedAirports).isNotEmpty();
     }
 }

@@ -1,5 +1,3 @@
-import net.thucydides.core.reports.html.HtmlAggregateStoryReporter
-
 buildscript {
     repositories {
         mavenLocal()
@@ -11,154 +9,32 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE")
         classpath group: 'org.cloudfoundry', name: 'cf-gradle-plugin', version: '1.0.4'
-        classpath("net.thucydides:thucydides-core:0.9.269")
+        classpath("net.thucydides:thucydides-core:0.9.270-SNAPSHOT")
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'groovy'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'spring-boot'
-
-apply plugin: ThucydidesPlugin
-apply plugin: 'cloudfoundry'
+//apply plugin: 'spring-boot'
 
 allprojects {
+    apply plugin: 'java'
+    apply plugin: 'groovy'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    apply plugin: 'maven'
+
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
-}
 
-thucydides.projectKey = 'flying-high'
-
-jar {
-    baseName = 'flights-service'
-    version =  '0.1.0'
-}
-
-repositories {
-    mavenLocal()
-    mavenCentral()
-    maven { url "http://repo.spring.io/libs-release" }
-}
-
-dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.data:spring-data-mongodb")
-    compile("org.springframework.data:spring-data-rest-webmvc")
-    compile("org.springframework.boot:spring-boot-starter-actuator")
-//    compile('org.springframework.cloud:spring-cloud-cloudfoundry-connector:1.1.0.RELEASE')
-//    compile('org.springframework.cloud:spring-cloud-spring-service-connector:1.1.0.RELEASE')
-    compile("org.codehaus.groovy:groovy-all:2.3.6")
-    compile("com.google.guava:guava:18.0")
-
-    testCompile("org.spockframework:spock-core:0.7-groovy-2.0")
-    testCompile("junit:junit")
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
-    testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7"
-    testCompile 'org.easytesting:fest-assert-core:2.0M10'
-    testCompile 'net.thucydides:thucydides-core:0.9.269'
-    testCompile 'net.thucydides:thucydides-jbehave-plugin:0.9.268'
-
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.11'
-}
-
-
-// Common test configuration
-test {
-
-    systemProperty 'thucydides.capability.types', 'capability,feature'
-    systemProperty 'thucydides.test.root', 'flyinghigh.services'
-
-    maxParallelForks 4
-    useJUnit()
-
-    include '**/When*.class'
-    exclude '**/*IT.class'
-    exclude 'flyinghigh/services/acceptancetests/**'
-
-    testLogging {
-        events "passed","skipped","failed"
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "http://repo.spring.io/libs-release" }
     }
-}
 
-task integrationTests(type: Test) {
-    include '**/*IT.class'
-    testLogging {
-        events "passed", "skipped", "failed"
+    task wrapper(type: Wrapper) {
+        gradleVersion = '1.11'
     }
-}
 
-task acceptanceTests(type: Test) {
-    useJUnit()
-    include 'flyinghigh/services/acceptancetests/**/*.class'
-}
-
-integrationTests.mustRunAfter test
-acceptanceTests.mustRunAfter integrationTests
-aggregate.mustRunAfter acceptanceTests
-
-check.dependsOn integrationTests
-check.dependsOn acceptanceTests
-check.dependsOn aggregate
-
-clean{
-    delete "target"
-}
-
-if (project.hasProperty('production')) {
-    cloudfoundry {
-        space = 'production'
-        uri = 'http://prod-flights.cfapps.io'
-    }
-} else {
-    cloudfoundry {
-        space = 'development'
-        uri = 'http://dev-flights.cfapps.io'
-    }
 }
 
 
-cloudfoundry {
-    target = 'https://api.run.pivotal.io'
-    application = 'flights'
-    username = 'john.smart@wakaleo.com'
-    password = 'nos-bak-yac-yu-i'
-    file = file("${jar.archivePath}")
-    buildpack = 'https://github.com/cloudfoundry/java-buildpack'
-    services {
-        'mongodb' {
-            label = 'mongolab'
-            plan = 'sandbox'
-            bind = true
-        }
-    }
-}
-
-class ThucydidesPlugin implements Plugin<Project> {
-    void apply(Project project) {
-        project.extensions.create("thucydides", ThucydidesPluginExtension)
-        project.task('aggregate') << {
-            logger.lifecycle("Generating Thucydides Reports for ${project.thucydides.projectKey} to directory $project.thucydides.outputDirectory")
-            System.properties['thucydides.project.key'] = project.thucydides.projectKey
-            def reporter = new HtmlAggregateStoryReporter(project.thucydides.projectKey)
-            reporter.outputDirectory = new File(project.thucydides.outputDirectory)
-            reporter.issueTrackerUrl = project.thucydides.issueTrackerUrl
-            reporter.jiraUrl = project.thucydides.jiraUrl
-            reporter.jiraProject = project.thucydides.jiraProject
-            reporter.generateReportsForTestResultsFrom(new File(project.thucydides.sourceDirectory))
-        }
-    }
-}
-
-class ThucydidesPluginExtension {
-    def String outputDirectory = 'target/site/thucydides'
-    def String projectKey
-    def String issueTrackerUrl
-    def String jiraUrl
-    def String jiraProject
-    def String sourceDirectory = outputDirectory
-}

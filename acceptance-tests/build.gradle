@@ -1,0 +1,84 @@
+import net.thucydides.core.reports.ResultChecker
+import net.thucydides.core.reports.html.HtmlAggregateStoryReporter
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "http://repo.spring.io/libs-release" }
+        maven { url "https://oss.sonatype.org/content/repositories/releases"}
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots"}
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE")
+        classpath("net.thucydides:thucydides-core:0.9.270-SNAPSHOT")
+    }
+}
+
+
+apply plugin: ThucydidesPlugin
+
+thucydides.projectKey = 'flying-high-acceptance-tests'
+
+dependencies {
+    compile("org.codehaus.groovy:groovy-all:2.3.6")
+    compile("com.google.guava:guava:18.0")
+
+    compile("org.springframework.data:spring-data-mongodb")
+    compile("org.springframework.data:spring-data-rest-webmvc")
+
+    compile("com.wakaleo.flying-high:flights-service:0.1.0")
+    testCompile("org.spockframework:spock-core:0.7-groovy-2.0")
+    testCompile("junit:junit")
+    testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7"
+    testCompile 'org.easytesting:fest-assert-core:2.0M10'
+    testCompile 'net.thucydides:thucydides-core:0.9.270-SNAPSHOT'
+    testCompile 'net.thucydides:thucydides-jbehave-plugin:0.9.270-SNAPSHOT'
+
+}
+
+// Common test configuration
+test {
+    systemProperty 'thucydides.capability.types', 'capability,feature'
+    systemProperty 'thucydides.test.root', 'flyinghigh.services'
+    useJUnit()
+}
+
+aggregate.mustRunAfter test
+
+clean{
+    delete "target"
+}
+
+class ThucydidesPlugin implements Plugin<Project> {
+    void apply(Project project) {
+        project.extensions.create("thucydides", ThucydidesPluginExtension)
+        project.task('aggregate') << {
+            logger.lifecycle("Generating Thucydides Reports for ${project.thucydides.projectKey} to directory $project.thucydides.outputDirectory")
+            System.properties['thucydides.project.key'] = project.thucydides.projectKey
+            def reporter = new HtmlAggregateStoryReporter(project.thucydides.projectKey)
+            reporter.outputDirectory = new File(project.thucydides.outputDirectory)
+            reporter.issueTrackerUrl = project.thucydides.issueTrackerUrl
+            reporter.jiraUrl = project.thucydides.jiraUrl
+            reporter.jiraProject = project.thucydides.jiraProject
+            reporter.generateReportsForTestResultsFrom(new File(project.projectDir, project.thucydides.sourceDirectory))
+        }
+
+        project.task('checkOutcomes') << {
+            def reportDir = new File(project.projectDir, project.thucydides.outputDirectory)
+            logger.lifecycle("Checking Thucydides results for ${project.thucydides.projectKey} in directory $reportDir")
+            def checker = new ResultChecker(reportDir)
+            checker.checkTestResults()
+        }
+
+    }
+}
+
+class ThucydidesPluginExtension {
+    def String outputDirectory = 'target/site/thucydides'
+    def String projectKey
+    def String issueTrackerUrl
+    def String jiraUrl
+    def String jiraProject
+    def String sourceDirectory = outputDirectory
+}
