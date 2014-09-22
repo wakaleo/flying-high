@@ -2,6 +2,8 @@ package flyinghigh.services.flights.config;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.MongoURI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +22,8 @@ import org.springframework.util.StringUtils;
 import java.net.UnknownHostException;
 import java.util.Optional;
 
+import static org.springframework.util.StringUtils.isEmpty;
+
 @Configuration
 @EnableMongoRepositories
 public class MongoConfiguration {
@@ -32,26 +36,26 @@ public class MongoConfiguration {
 
     public @Bean MongoFactoryBean mongo() {
         MongoFactoryBean mongo = new MongoFactoryBean();
-        mongo.setHost(environment.getProperty("mongodb.host", "localhost"));
         return mongo;
     }
 
     @Bean
     public MongoDbFactory mongoDbFactory() throws UnknownHostException {
-        String database = environment.getProperty("mongodb.database","flyinghigh");
-
-        Optional<UserCredentials> optionalCredentials = findCredentials();
-        return new SimpleMongoDbFactory(mongoClient(), database, optionalCredentials.orElse(null));
+        MongoClient client = new MongoClient( new MongoClientURI(getMongoURI()));
+        return new SimpleMongoDbFactory(client,database());
     }
 
-    private Optional<UserCredentials> findCredentials() {
+    public String getMongoURI() {
         String username = environment.getProperty("mongodb.username");
         String password = environment.getProperty("mongodb.password");
-        if (!StringUtils.isEmpty(username)) {
-            return Optional.of(new UserCredentials(username, password));
-        } else {
-            return Optional.empty();
-        }
+        String host = environment.getProperty("mongodb.host");
+        String port = environment.getProperty("mongodb.port");
+        String credentials = (isEmpty(username)) ? "" : username + ":" + password + "@";
+        return "mongodb://" + credentials +  host + ":" + port + "/" + database();
+    }
+
+    public String database() {
+        return environment.getProperty("mongodb.database","flyinghigh");
     }
 
     @Bean
