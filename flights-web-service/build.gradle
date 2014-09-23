@@ -5,7 +5,7 @@ apply plugin: 'cloudfoundry'
 
 jar {
     baseName = 'flights-web-service'
-    version = "${appVersion}-${buildNumber}"
+    version = appVersion
 }
 
 group = "com.wakaleo.flying-high"
