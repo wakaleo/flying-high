@@ -1,17 +1,12 @@
 package flyinghigh.services.acceptancetests.steps;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 import flyinghigh.services.acceptancetests.domain.Airport;
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.util.EnvironmentVariables;
-import net.thucydides.core.util.SystemEnvironmentVariables;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.hateoas.Resource;
-import org.springframework.http.*;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,15 +20,8 @@ public class AirportClientSteps {
         APPLICATION_JSON_HEADER.setContentType(MediaType.APPLICATION_JSON);
     }
 
-
-    EnvironmentVariables environmentVariables;
-
-    public AirportClientSteps() {
-        environmentVariables = new SystemEnvironmentVariables();
-    }
-
     public String getBaseFlightUrl() {
-        String environment = environmentVariables.getProperty("webservice.environment","local");
+        String environment =  System.getProperty("webservice.environment","local");
         if (environment.equals("local")) {
             return "http://localhost:8090/";
         } else {
