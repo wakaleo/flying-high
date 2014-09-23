@@ -2,7 +2,7 @@ package flyinghigh.services.acceptancetests.steps;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
-import flyinghigh.services.flights.domain.Airport;
+import flyinghigh.services.acceptancetests.domain.Airport;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.util.SystemEnvironmentVariables;

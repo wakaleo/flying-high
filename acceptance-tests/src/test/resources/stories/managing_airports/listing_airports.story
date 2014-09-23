@@ -9,7 +9,7 @@ Scenario: List serviced airports
 Given I need to know what cities I can fly to
 When I ask for a list of airports
 Then I should obtain at least the following:
-| country   | city          | code   |
+| country   | name          | code   |
 | Australia | Sydney        | SYD    |
 | Australia | Melbourne     | MLB    |
 | Australia | Brisbane      | BNE    |

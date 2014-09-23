@@ -1,8 +1,8 @@
 package flyinghigh.services.acceptancetests.stepdefs;
 
 import com.google.common.collect.Lists;
+import flyinghigh.services.acceptancetests.domain.Airport;
 import flyinghigh.services.acceptancetests.steps.AirportClientSteps;
-import flyinghigh.services.flights.domain.Airport;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -40,9 +40,9 @@ public class AirportStepDefinitions {
     public void thenIShouldObtainAtLeastTheFollowing(ExamplesTable expectedAirports) {
         List<Airport> expected = Lists.newArrayList();
         for(Map<String, String> airportFields : expectedAirports.getRows()) {
-            expected.add(new Airport(airportFields.get("country"),
-                        airportFields.get("city"),
-                        airportFields.get("code")));
+            expected.add(new Airport(airportFields.get("name"),
+                                     airportFields.get("code"),
+                                     airportFields.get("country")));
 
         }
         assertThat(retrievedAirports).containsAll(expected);
