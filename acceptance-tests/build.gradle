@@ -10,7 +10,6 @@ buildscript {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots"}
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE")
         classpath("net.thucydides:thucydides-core:0.9.271")
     }
 }
@@ -24,11 +23,9 @@ dependencies {
     compile("org.codehaus.groovy:groovy-all:2.3.6")
     compile("com.google.guava:guava:18.0")
 
-    compile("org.springframework.data:spring-data-mongodb")
-    compile("org.springframework.data:spring-data-rest-webmvc")
-
-    testCompile("org.spockframework:spock-core:0.7-groovy-2.0")
     testCompile("junit:junit")
+
+    compile("org.springframework.data:spring-data-rest-webmvc:2.2.0.RELEASE")
     testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7"
     testCompile 'org.easytesting:fest-assert-core:2.0M10'
     testCompile 'net.thucydides:thucydides-core:0.9.271'
