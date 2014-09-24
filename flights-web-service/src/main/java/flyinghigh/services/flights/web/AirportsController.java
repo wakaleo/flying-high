@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class ReferenceDataController {
+public class AirportsController {
 
     private @Autowired AirportRepository airportRepository;
 
-    @RequestMapping("/reference/airports")
+    @RequestMapping("/rest/api/airports")
     public List<Airport> listAirports() {
         return airportRepository.findAll(new Sort("name"));
     }

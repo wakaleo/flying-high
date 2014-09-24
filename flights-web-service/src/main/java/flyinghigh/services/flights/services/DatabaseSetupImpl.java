@@ -13,7 +13,8 @@ public class DatabaseSetupImpl implements DatabaseSetup {
 
     private final static List<Airport> DEFAULT_AIRPORTS = ImmutableList.of(
             Airport.called("Sydney").inCountry("Australia").withCode("SYD"),
-            Airport.called("Sydney").inCountry("Melbourne").withCode("MLB"),
+            Airport.called("Melbourne").inCountry("Australia").withCode("MLB"),
+            Airport.called("Brisbane").inCountry("Australia").withCode("BNE"),
             Airport.called("San Francisco").inCountry("USA").withCode("SFO"),
             Airport.called("Los Angeles").inCountry("USA").withCode("LAX"),
             Airport.called("Hong Kong").inCountry("Hong Kong").withCode("HKG"),
@@ -21,8 +22,7 @@ public class DatabaseSetupImpl implements DatabaseSetup {
             Airport.called("Beijing").inCountry("China").withCode("PEK"),
             Airport.called("Auckland").inCountry("New Zealand").withCode("AKL"),
             Airport.called("Wellington").inCountry("New Zealand").withCode("WLG"),
-            Airport.called("Christchurch").inCountry("New Zealand").withCode("LHR"),
-            Airport.called("Christchurch").inCountry("New Zealand").withCode("LHR"),
+            Airport.called("Christchurch").inCountry("New Zealand").withCode("CHC"),
             Airport.called("Paris").inCountry("France").withCode("CDG"),
             Airport.called("Nice").inCountry("France").withCode("NIC"),
             Airport.called("Rome").inCountry("Italy").withCode("FCO"),
