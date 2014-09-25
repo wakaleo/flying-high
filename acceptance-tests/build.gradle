@@ -6,8 +6,8 @@ buildscript {
         mavenLocal()
         mavenCentral()
         maven { url "http://repo.spring.io/libs-release" }
-        maven { url "https://oss.sonatype.org/content/repositories/releases"}
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots"}
+        maven { url "https://oss.sonatype.org/content/repositories/releases" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
     dependencies {
         classpath("net.thucydides:thucydides-core:0.9.271")
@@ -33,18 +33,25 @@ dependencies {
 
 }
 
-println "webserviceEnvironment = ${webserviceEnvironment}"
+
+if (webserviceEnvironment == "dev") {
+    baseUrl = 'http://flying-high-dev.cfapps.io'
+} else if (webserviceEnvironment == "prod") {
+    baseUrl = 'http://flying-high.cfapps.io'
+}
+
 // Common test configuration
 test {
     systemProperty 'thucydides.capability.types', 'capability,feature'
     systemProperty 'thucydides.test.root', 'flyinghigh.services'
     systemProperty 'webservice.environment', webserviceEnvironment
+    systemProperty 'webdriver.base.url', baseUrl
     useJUnit()
 }
 
 aggregate.mustRunAfter test
 
-clean{
+clean {
     delete "target"
 }
 

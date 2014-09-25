@@ -13,8 +13,6 @@ buildscript {
     }
 }
 
-//apply plugin: 'spring-boot'
-
 allprojects {
     apply plugin: 'java'
     apply plugin: 'groovy'
