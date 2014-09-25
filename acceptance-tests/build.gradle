@@ -36,8 +36,10 @@ dependencies {
 
 if (webserviceEnvironment == "dev") {
     baseUrl = 'http://flying-high-dev.cfapps.io'
+    driver = 'phantomjs'
 } else if (webserviceEnvironment == "prod") {
     baseUrl = 'http://flying-high.cfapps.io'
+    driver = 'phantomjs'
 }
 
 // Common test configuration
@@ -46,6 +48,7 @@ test {
     systemProperty 'thucydides.test.root', 'flyinghigh.services'
     systemProperty 'webservice.environment', webserviceEnvironment
     systemProperty 'webdriver.base.url', baseUrl
+    systemProperty 'webdriver.driver', driver
     useJUnit()
 }
 
