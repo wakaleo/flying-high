@@ -1,7 +1,9 @@
 package flyinghigh.services.flights;
 
 import flyinghigh.services.flights.domain.Airport;
+import flyinghigh.services.flights.domain.Route;
 import flyinghigh.services.flights.repositories.AirportRepository;
+import flyinghigh.services.flights.repositories.RouteRepository;
 import flyinghigh.services.flights.services.DatabaseSetup;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,18 +20,21 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 import static org.fest.assertions.api.Assertions.assertThat;
-//
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = FlightsApp.class)
 @WebAppConfiguration
 @IntegrationTest({"server.port=0", "management.port=0"})
-public class LookingUpAirportsIT {
+public class LookingUpRoutesIT {
 
     @Autowired
     private EmbeddedWebApplicationContext server;
 
     @Autowired
     private DatabaseSetup databaseSetup;
+
+    @Autowired
+    private RouteRepository routeRepository;
 
     @Autowired
     private AirportRepository airportRepository;
@@ -49,9 +54,16 @@ public class LookingUpAirportsIT {
     }
 
     @Test
-    public void should_list_all_of_the_serviced_airports() {
-        List<Airport> airports = airportRepository.findAll();
-        assertThat(airports).isNotEmpty();
+    public void should_list_all_of_the_known_routes() {
+        List<Route> routes = routeRepository.findAll();
+        assertThat(routes).isNotEmpty();
+    }
+
+    @Test
+    public void should_list_routes_from_a_given_airport() {
+        List<Route> routes = routeRepository.findByDepartureCode("SYD");
+        assertThat(routes).isNotEmpty();
+        routes.stream().forEach(route -> assertThat(route.getDeparture().getCode()).isEqualTo("SYD"));
     }
 
 }

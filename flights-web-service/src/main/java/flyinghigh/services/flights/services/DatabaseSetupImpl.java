@@ -2,7 +2,9 @@ package flyinghigh.services.flights.services;
 
 import com.google.common.collect.ImmutableList;
 import flyinghigh.services.flights.domain.Airport;
+import flyinghigh.services.flights.domain.Route;
 import flyinghigh.services.flights.repositories.AirportRepository;
+import flyinghigh.services.flights.repositories.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,34 +13,52 @@ import java.util.List;
 @Component
 public class DatabaseSetupImpl implements DatabaseSetup {
 
+    private final static Airport sydney = Airport.called("Sydney").inCountry("Australia").withCode("SYD");
+    private final static Airport melbourne = Airport.called("Melbourne").inCountry("Australia").withCode("MLB");
+    private final static Airport brisbane = Airport.called("Brisbane").inCountry("Australia").withCode("BNE");
+    private final static Airport perth = Airport.called("Perth").inCountry("Australia").withCode("PER");
+    private final static Airport sanfrancisco = Airport.called("San Francisco").inCountry("USA").withCode("SFO");
+    private final static Airport losangeles = Airport.called("Los Angeles").inCountry("USA").withCode("LAX");
+    private final static Airport hongkong = Airport.called("Hong Kong").inCountry("Hong Kong").withCode("HKG");
+    private final static Airport singapore = Airport.called("Singapore").inCountry("Singapore").withCode("SIN");
+    private final static Airport auckland = Airport.called("Auckland").inCountry("New Zealand").withCode("AKL");
+    private final static Airport wellington = Airport.called("Wellington").inCountry("New Zealand").withCode("WLG");
+    private final static Airport christchurch = Airport.called("Christchurch").inCountry("New Zealand").withCode("CHC");
+
     private final static List<Airport> DEFAULT_AIRPORTS = ImmutableList.of(
-            Airport.called("Sydney").inCountry("Australia").withCode("SYD"),
-            Airport.called("Melbourne").inCountry("Australia").withCode("MLB"),
-            Airport.called("Brisbane").inCountry("Australia").withCode("BNE"),
-            Airport.called("San Francisco").inCountry("USA").withCode("SFO"),
-            Airport.called("Los Angeles").inCountry("USA").withCode("LAX"),
-            Airport.called("Hong Kong").inCountry("Hong Kong").withCode("HKG"),
-            Airport.called("Singapore").inCountry("Singapore").withCode("SIN"),
-            Airport.called("Beijing").inCountry("China").withCode("PEK"),
-            Airport.called("Auckland").inCountry("New Zealand").withCode("AKL"),
-            Airport.called("Wellington").inCountry("New Zealand").withCode("WLG"),
-            Airport.called("Christchurch").inCountry("New Zealand").withCode("CHC"),
-            Airport.called("Paris").inCountry("France").withCode("CDG"),
-            Airport.called("Nice").inCountry("France").withCode("NIC"),
-            Airport.called("Rome").inCountry("Italy").withCode("FCO"),
-            Airport.called("Dubai").inCountry("UAE").withCode("DXB")
+            sydney, melbourne, brisbane, sanfrancisco, losangeles, hongkong, singapore, auckland, wellington, christchurch
     );
 
-    private final AirportRepository airportRepository;
 
+    private static final List<Route> DEFAULT_ROUTES = ImmutableList.of(
+            Route.from(sydney).to(melbourne).withDistanceOf(850).km(),
+            Route.from(sydney).to(brisbane).withDistanceOf(1200).km(),
+            Route.from(sydney).to(perth).withDistanceOf(3000).km(),
+            Route.from(sydney).to(auckland).withDistanceOf(1800).km(),
+            Route.from(sydney).to(wellington).withDistanceOf(2000).km(),
+            Route.from(sydney).to(sanfrancisco).withDistanceOf(6000).km(),
+            Route.from(melbourne).to(sydney).withDistanceOf(850).km(),
+            Route.from(melbourne).to(brisbane).withDistanceOf(2000).km(),
+            Route.from(melbourne).to(perth).withDistanceOf(2700).km(),
+            Route.from(melbourne).to(auckland).withDistanceOf(2500).km(),
+            Route.from(melbourne).to(wellington).withDistanceOf(2200).km(),
+            Route.from(melbourne).to(sanfrancisco).withDistanceOf(6800).km()
+    );
+
+    private
     @Autowired
-    public DatabaseSetupImpl(AirportRepository airportRepository) {
-        this.airportRepository = airportRepository;
-    }
+    AirportRepository airportRepository;
+    private
+    @Autowired
+    RouteRepository routeRepository;
 
     @Override
-    public void initializeAirports() {
+    public void initializeReferenceData() {
         airportRepository.deleteAll();
         airportRepository.save(DEFAULT_AIRPORTS);
+
+        routeRepository.deleteAll();
+        routeRepository.save(DEFAULT_ROUTES);
+
     }
 }

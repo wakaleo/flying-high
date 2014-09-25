@@ -10,6 +10,6 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        databaseSetup.initializeAirports();
+        databaseSetup.initializeReferenceData();
     }
 }

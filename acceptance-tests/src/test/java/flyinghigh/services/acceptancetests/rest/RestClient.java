@@ -19,6 +19,15 @@ public class RestClient {
         }
     }
 
+    public String getBaseAccountUrl() {
+        String environment =  System.getProperty("webservice.environment","local");
+        if (environment.equals("local")) {
+            return "http://localhost:8090/";
+        } else {
+            return "http://" + environment + "-" + "accounts.cfapps.io";
+        }
+    }
+
     public List<Airport> findAllAirports() {
         return findAllAirports("/rest/api/airports");
     }
@@ -27,4 +36,6 @@ public class RestClient {
     public List<Airport> findAllAirports(String path) {
         return ImmutableList.copyOf(restTemplate.getForEntity(getBaseFlightUrl() + path, Airport[].class).getBody());
     }
+
+
 }
