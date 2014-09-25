@@ -42,6 +42,10 @@ if (webserviceEnvironment == "dev") {
     driver = 'phantomjs'
 }
 
+println "webserviceEnvironment = $webserviceEnvironment"
+println "driver = $driver"
+println "baseUrl = $baseUrl"
+
 // Common test configuration
 test {
     systemProperty 'thucydides.capability.types', 'capability,feature'
