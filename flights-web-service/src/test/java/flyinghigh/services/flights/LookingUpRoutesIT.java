@@ -1,6 +1,5 @@
 package flyinghigh.services.flights;
 
-import flyinghigh.services.flights.domain.Airport;
 import flyinghigh.services.flights.domain.Route;
 import flyinghigh.services.flights.repositories.AirportRepository;
 import flyinghigh.services.flights.repositories.RouteRepository;
