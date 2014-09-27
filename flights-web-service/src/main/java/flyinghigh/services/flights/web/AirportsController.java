@@ -2,7 +2,7 @@ package flyinghigh.services.flights.web;
 
 import flyinghigh.services.flights.domain.Airport;
 import flyinghigh.services.flights.repositories.AirportRepository;
-import flyinghigh.services.flights.services.DatabaseSetup;
+import flyinghigh.services.flights.services.database.DatabaseSetup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.RequestMapping;

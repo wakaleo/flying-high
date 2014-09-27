@@ -10,6 +10,7 @@ public class FrequentFlyerAccount {
     private String accountNumber;
     private String firstName;
     private String lastName;
+    private String homeAirportCode;
     private int statusPoints;
 
     public FrequentFlyerAccount() {
@@ -30,11 +31,12 @@ public class FrequentFlyerAccount {
         this.statusPoints = 0;
     }
 
-    public FrequentFlyerAccount(String accountNumber, String firstName, String lastName, int statusPoints) {
+    public FrequentFlyerAccount(String accountNumber, String firstName, String lastName, int statusPoints, String homeAirportCode) {
         this.accountNumber = accountNumber;
         this.firstName = firstName;
         this.lastName = lastName;
         this.statusPoints = statusPoints;
+        this.homeAirportCode = homeAirportCode;
     }
 
     public String getId() {
@@ -59,6 +61,10 @@ public class FrequentFlyerAccount {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getHomeAirportCode() {
+        return homeAirportCode;
     }
 
     public Earner earns(int amount) {

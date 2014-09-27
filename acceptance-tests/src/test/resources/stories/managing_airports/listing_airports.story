@@ -13,7 +13,7 @@ When I ask for a list of airports
 Then I should obtain at least the following:
 | country   | name          | code   |
 | Australia | Sydney        | SYD    |
-| Australia | Melbourne     | MLB    |
+| Australia | Melbourne     | MEL    |
 | Australia | Brisbane      | BNE    |
 | USA       | San Francisco | SFO    |
 | USA       | Los Angeles   | LAX    |

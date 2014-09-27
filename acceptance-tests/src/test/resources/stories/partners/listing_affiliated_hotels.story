@@ -4,7 +4,7 @@ Meta:
 Narrative:
 In order to earn the most points possible
 As a traveller
-I want to know what hotels will let me earn poitns
+I want to know what hotels will let me earn points
 
 
 Scenario: List partner hotels

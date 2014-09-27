@@ -1,0 +1,3 @@
+Airports
+In order to encourage clients to book flights more often
+We want to make clients aware of all the possible destinations they can fly to with Flying High Airlines

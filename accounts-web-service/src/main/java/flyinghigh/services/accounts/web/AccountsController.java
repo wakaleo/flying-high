@@ -3,8 +3,8 @@ package flyinghigh.services.accounts.web;
 import com.google.common.collect.ImmutableList;
 import flyinghigh.services.accounts.domain.FrequentFlyerAccount;
 import flyinghigh.services.accounts.repositories.AccountRepository;
-import flyinghigh.services.accounts.services.DatabaseSetup;
-import groovy.transform.Immutable;
+import flyinghigh.services.accounts.services.database.DatabaseSetup;
+import flyinghigh.services.accounts.services.destinations.DestinationsCalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +23,9 @@ public class AccountsController {
     @Autowired
     private DatabaseSetup databaseSetup;
 
+    @Autowired
+    private DestinationsCalculatorService destinationsCalculatorService;
+
     @RequestMapping(method = RequestMethod.GET, value = "/{number}")
     public FrequentFlyerAccount viewAccount(@PathVariable String number) {
         return accountRepository.findByAccountNumber(number);
@@ -40,7 +43,8 @@ public class AccountsController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{number}/possibleDestinations")
     public List<String> findPossibleDestinations(@PathVariable String number) {
-        return ImmutableList.of("Paris","London");
+        FrequentFlyerAccount currentAccount = accountRepository.findByAccountNumber(number);
+        return destinationsCalculatorService.findPossibleDestinations(currentAccount.getHomeAirportCode(), currentAccount.getStatusPoints());
     }
 
 }

@@ -1,0 +1,3 @@
+Earning Points
+In order to encourage clients to book flights more often
+We want clients to be able to book flights using points they earn through flights or partner purchases.

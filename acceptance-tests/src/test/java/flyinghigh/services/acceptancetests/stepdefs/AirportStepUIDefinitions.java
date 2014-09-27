@@ -3,6 +3,7 @@ package flyinghigh.services.acceptancetests.stepdefs;
 import com.google.common.collect.Lists;
 import flyinghigh.services.acceptancetests.domain.Airport;
 import flyinghigh.services.acceptancetests.pages.HomePage;
+import flyinghigh.services.acceptancetests.pages.MyAccountPage;
 import flyinghigh.services.acceptancetests.rest.RestClient;
 import flyinghigh.services.acceptancetests.steps.AirportClientSteps;
 import net.thucydides.core.annotations.Steps;
@@ -28,6 +29,7 @@ public class AirportStepUIDefinitions {
     AirportClientSteps airportClientSteps;
 
     HomePage homePage;
+    MyAccountPage myAccountPage;
 
     @When("I go to the home page")
     public void openHomePage() {

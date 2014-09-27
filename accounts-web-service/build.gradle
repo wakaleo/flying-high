@@ -30,6 +30,8 @@ dependencies {
     compile("org.codehaus.groovy:groovy-all:2.3.6")
     compile("com.google.guava:guava:18.0")
 
+    compile project(":flights-web-service")
+
     testCompile("org.spockframework:spock-core:0.7-groovy-2.0")
     testCompile("junit:junit")
     testCompile 'org.springframework.boot:spring-boot-starter-test'

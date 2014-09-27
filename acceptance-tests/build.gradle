@@ -29,7 +29,7 @@ dependencies {
     testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7"
     testCompile 'org.easytesting:fest-assert-core:2.0M10'
     testCompile 'net.thucydides:thucydides-core:0.9.271'
-    testCompile 'net.thucydides:thucydides-jbehave-plugin:0.9.271'
+    testCompile 'net.thucydides:thucydides-jbehave-plugin:0.9.272-SNAPSHOT'
 
 }
 
@@ -53,10 +53,13 @@ test {
     systemProperty 'webservice.environment', webserviceEnvironment
     systemProperty 'webdriver.base.url', baseUrl
     systemProperty 'webdriver.driver', driver
+    systemProperty 'thucydides.resized.image.width', 1000
     useJUnit()
 }
 
+test.shouldRunAfter clean
 aggregate.mustRunAfter test
+checkOutcomes.mustRunAfter aggregate
 
 clean {
     delete "target"

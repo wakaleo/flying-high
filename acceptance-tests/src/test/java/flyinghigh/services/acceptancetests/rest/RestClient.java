@@ -38,4 +38,8 @@ public class RestClient {
     }
 
 
+    public int calculateRequiredPoints(String departureCode, String destinationCode) {
+        String points = restTemplate.getForObject(getBaseFlightUrl() + "/rest/api/routes/calculatePoints?departureCode={departure}&destinationCode={destination}", String.class,departureCode,destinationCode);
+        return Integer.valueOf(points);
+    }
 }

@@ -14,12 +14,11 @@ import org.springframework.web.client.RestTemplate;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-//
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = FlightsApp.class)
 @WebAppConfiguration
 @IntegrationTest({"server.port=0", "management.port=0"})
-public class CheckingTheApplicationVersionIT {
+public class CalculatingRequiredPointsIT {
 
     @Autowired
     private EmbeddedWebApplicationContext server;
@@ -38,9 +37,22 @@ public class CheckingTheApplicationVersionIT {
     }
 
     @Test
-    public void should_display_the_current_application_version() {
-        String about = restTemplate.getForObject(baseUrl + "/about", String.class);
-        assertThat(about).contains("FLIGHTS WEB SERVICE VERSION");
+    public void should_calculate_the_points_required_for_a_given_route() {
+        String points = restTemplate.getForObject(baseUrl + "/rest/api/routes/calculatePoints?departureCode={departure}&destinationCode={destination}", String.class,"SYD","SFO");
+        assertThat(points).isEqualTo("13000");
+    }
+
+    @Test
+    public void should_calculate_the_points_required_for_a_trip_back() {
+        String points = restTemplate.getForObject(baseUrl + "/rest/api/routes/calculatePoints?departureCode={departure}&destinationCode={destination}", String.class,"SFO","SYD");
+        assertThat(points).isEqualTo("13000");
+    }
+
+
+    @Test
+    public void should_calculate_zero_for_points_between_the_same_cities() {
+        String points = restTemplate.getForObject(baseUrl + "/rest/api/routes/calculatePoints?departureCode={departure}&destinationCode={destination}", String.class,"SYD","SYD");
+        assertThat(points).isEqualTo("0");
     }
 
 }

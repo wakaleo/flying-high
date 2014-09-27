@@ -3,7 +3,7 @@ package flyinghigh.services.flights;
 import flyinghigh.services.accounts.AccountsApp;
 import flyinghigh.services.accounts.domain.FrequentFlyerAccount;
 import flyinghigh.services.accounts.repositories.AccountRepository;
-import flyinghigh.services.accounts.services.DatabaseSetup;
+import flyinghigh.services.accounts.services.database.DatabaseSetup;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

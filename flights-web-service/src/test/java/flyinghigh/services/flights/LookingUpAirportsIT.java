@@ -2,7 +2,7 @@ package flyinghigh.services.flights;
 
 import flyinghigh.services.flights.domain.Airport;
 import flyinghigh.services.flights.repositories.AirportRepository;
-import flyinghigh.services.flights.services.DatabaseSetup;
+import flyinghigh.services.flights.services.database.DatabaseSetup;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

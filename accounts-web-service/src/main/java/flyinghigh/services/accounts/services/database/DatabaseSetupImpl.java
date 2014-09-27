@@ -1,4 +1,4 @@
-package flyinghigh.services.accounts.services;
+package flyinghigh.services.accounts.services.database;
 
 import com.google.common.collect.ImmutableList;
 import flyinghigh.services.accounts.domain.FrequentFlyerAccount;
@@ -12,9 +12,9 @@ import java.util.List;
 public class DatabaseSetupImpl implements DatabaseSetup {
 
     private final static List<FrequentFlyerAccount> DEFAULT_ACCOUNTS = ImmutableList.of(
-            new FrequentFlyerAccount("123456","Sarah-Jane","Smith",500),
-            new FrequentFlyerAccount("123457","Harry","Sullivan",1000),
-            new FrequentFlyerAccount("123458","Jo","Grant", 2000)
+            new FrequentFlyerAccount("123456","Sarah-Jane","Smith",500,"SYD"),
+            new FrequentFlyerAccount("123457","Harry","Sullivan",1000,"SYD"),
+            new FrequentFlyerAccount("123458","Jo","Grant", 2000,"SYD")
     );
 
     private final AccountRepository accountRepository;

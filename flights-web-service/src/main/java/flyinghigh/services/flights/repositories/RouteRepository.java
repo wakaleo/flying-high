@@ -10,4 +10,6 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "routes", path = "routes")
 public interface RouteRepository extends MongoRepository<Route, String> {
     List<Route> findByDepartureCode(@Param("departureCode") String departureCode);
+    List<Route> findByDepartureCodeAndDestinationCode(@Param("departureCode") String departureCode,
+                                                      @Param("destinationCode") String destinationCode);
 }

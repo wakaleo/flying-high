@@ -1,4 +1,4 @@
-package flyinghigh.services.flights.services;
+package flyinghigh.services.accounts.services.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -10,6 +10,6 @@ public class Bootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        databaseSetup.initializeReferenceData();
+        databaseSetup.initializeAccounts();
     }
 }

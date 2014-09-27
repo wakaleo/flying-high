@@ -63,20 +63,16 @@ public class Airport {
     }
 
     @Override
+    public String toString() {
+        return name + "(" + code + ")";
+    }
+
+    @Override
     public int hashCode() {
         int result = code != null ? code.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Airport{" +
-                "code='" + code + '\'' +
-                ", name='" + name + '\'' +
-                ", country='" + country + '\'' +
-                '}';
     }
 
     public static class AirportBuilder {

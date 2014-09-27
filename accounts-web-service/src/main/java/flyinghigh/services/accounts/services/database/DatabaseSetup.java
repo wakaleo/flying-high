@@ -1,4 +1,4 @@
-package flyinghigh.services.accounts.services;
+package flyinghigh.services.accounts.services.database;
 
 /**
  * Created by john on 17/09/2014.
