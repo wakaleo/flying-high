@@ -1,6 +1,7 @@
 package flyinghigh.services.acceptancetests.pages;
 
 import flyinghigh.services.acceptancetests.domain.Airport;
+import javafx.beans.binding.MapExpression;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
 
@@ -9,8 +10,6 @@ import java.util.stream.Collectors;
 
 @DefaultUrl("http://localhost:9001/#/myaccount")
 public class MyAccountPage extends PageObject {
-
-    private int calculatedPoints;
 
     public void selectDepartureCity(String departure) {
         $("#departure").selectByVisibleText(departure);
@@ -22,5 +21,9 @@ public class MyAccountPage extends PageObject {
 
     public int getCalculatedPoints() {
         return Integer.valueOf($(".requiredPoints").getText());
+    }
+
+    public int getPointBalance() {
+        return Integer.valueOf($(".status-points-balance").getText());
     }
 }

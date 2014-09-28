@@ -15,4 +15,5 @@ public class HomePage extends PageObject {
                 .map(DisplayedAirport::fromWebElement)
                 .collect(Collectors.toList());
     }
+
 }

@@ -1,6 +1,7 @@
 package flyinghigh.services.acceptancetests.stepdefs;
 
 import flyinghigh.services.acceptancetests.rest.RestClient;
+import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -12,7 +13,8 @@ import static org.fest.assertions.api.Assertions.assertThat;
  */
 public class RouteStepDefinitions {
 
-    RestClient restClient = new RestClient();
+    @Steps
+    RestClient restClient;
 
     String departure;
     String destination;

@@ -9,6 +9,10 @@ So that I can plan my next trip with Flying High Airlines
 Notes: 2 points required per km
 
 Scenario: Calculate required points
+Meta:
+@tag layer:web
+2 points required per km
+
 Given I am a frequent flyer
 And I am on the My Account page
 When I calculate the points needed to go from <departure> to <destination>
@@ -19,6 +23,9 @@ Examples:
 |Melbourne  |Wellington    |4400          |
 
 Scenario: Required points between different destinations
+Meta:
+@tag layer:webservice
+
 Given I want to go from <departure> to <destination>
 When I calculate the number of required points
 Then I should obtain <requiredPoints>

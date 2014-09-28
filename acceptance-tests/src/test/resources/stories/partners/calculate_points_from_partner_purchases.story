@@ -1,10 +1,11 @@
 Meta:
 @Versions Release 2,
+@tag layer:webservice
 
 Narrative:
 In order to earn the most points possible
 As a traveller
-I want to buy
+I want to buy from companies where I will earn Frequent Flyer points
 
 Scenario: Calculate points earned from purchases in hotels
 Given I am a frequent flyer

@@ -30,12 +30,10 @@ public class RoutesController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/rest/api/routes/calculatePoints")
     public int calculateRequiredPoints(@RequestParam("departureCode") String departureCode,
-                                       @RequestParam("destinationCode") String destinationCode) throws NoSuchRouteException {
+                                       @RequestParam("destinationCode") String destinationCode)
+            throws NoSuchRouteException {
 
-        if (!departureCode.equals(destinationCode)) {
-            return pointsCalculator.calculatePointsRequiredBetween(departureCode, destinationCode);
-        } else {
-            return 0;
-        }
+       return (departureCode.equals(destinationCode)) ?
+               0 : pointsCalculator.calculatePointsRequiredBetween(departureCode, destinationCode);
     }
 }

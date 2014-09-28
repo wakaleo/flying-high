@@ -2,8 +2,8 @@ package flyinghigh.services.flights.domain
 
 import flyinghigh.services.flights.repositories.RouteRepository
 import flyinghigh.services.flights.services.points.NoSuchRouteException
-import spock.lang.Specification
 import flyinghigh.services.flights.services.points.PointsCalculator
+import spock.lang.Specification
 
 class WhenCalculatingRequiredPoints extends Specification {
 
@@ -15,9 +15,13 @@ class WhenCalculatingRequiredPoints extends Specification {
     def sydney = new Airport("Australia","Sydney","SYD")
     def melbourne = new Airport("Australia","Melbourne","MEL")
 
+    def setup() {
+    }
+
     def "Required points should be calculated based on route distance"() {
         given:
-            routeRepository.findByDepartureCodeAndDestinationCode("SYD","MEL") >> [Route.from(sydney).to(melbourne).withDistanceOf(DISTANCE).km()]
+            routeRepository.findByDepartureCodeAndDestinationCode("SYD","MEL") >>
+                    [Route.from(sydney).to(melbourne).withDistanceOf(DISTANCE).km()]
 
             def pointsCalculator = new PointsCalculator(routeRepository)
         when:

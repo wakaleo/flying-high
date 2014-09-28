@@ -54,7 +54,9 @@ test {
     systemProperty 'webdriver.base.url', baseUrl
     systemProperty 'webdriver.driver', driver
     systemProperty 'thucydides.resized.image.width', 1000
+    systemProperty 'dashboard.tag.list', 'capabilities, stories, layer'
     useJUnit()
+    maxParallelForks = 4
 }
 
 test.shouldRunAfter clean
@@ -64,6 +66,11 @@ checkOutcomes.mustRunAfter aggregate
 clean {
     delete "target"
 }
+task verify {
+    println "Running acceptance tests"
+}
+verify.dependsOn ':acceptance-tests:clean', ':acceptance-tests:test', ':acceptance-tests:aggregate', ':acceptance-tests:checkOutcomes'
+
 
 class ThucydidesPlugin implements Plugin<Project> {
     void apply(Project project) {

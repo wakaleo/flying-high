@@ -3,6 +3,8 @@ package flyinghigh.services.acceptancetests.steps;
 import flyinghigh.services.acceptancetests.pages.MyAccountPage;
 import net.thucydides.core.annotations.Step;
 
+import static org.fest.assertions.api.Assertions.assertThat;
+
 public class MyAccountUISteps {
 
     MyAccountPage myAccountPage;
@@ -18,4 +20,11 @@ public class MyAccountUISteps {
         myAccountPage.selectDestinationCity(destination);
         return myAccountPage.getCalculatedPoints();
     }
+
+    @Step
+    public void shouldSeeAccountBalanceOf(int expectedPoints) {
+        assertThat(myAccountPage.getPointBalance()).isEqualTo(expectedPoints);
+    }
+
+
 }

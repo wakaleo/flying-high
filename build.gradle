@@ -35,9 +35,5 @@ allprojects {
 
 }
 
-task verify {
-    println "Running acceptance tests"
-}
-verify.dependsOn ':acceptance-tests:clean', ':acceptance-tests:test', ':acceptance-tests:aggregate', ':acceptance-tests:checkOutcomes'
 
 

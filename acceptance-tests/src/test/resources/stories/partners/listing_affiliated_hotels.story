@@ -1,5 +1,6 @@
 Meta:
 @Versions Release 1, Iteration 1.1
+@tag layer:web
 
 Narrative:
 In order to earn the most points possible

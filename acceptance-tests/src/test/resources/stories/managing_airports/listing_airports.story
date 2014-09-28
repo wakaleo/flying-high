@@ -1,5 +1,6 @@
 Meta:
 @Versions Release 1, Iteration 1.0
+@tag layer:webservice
 
 Narrative:
 In order to know where I can fly
@@ -19,6 +20,9 @@ Then I should obtain at least the following:
 | USA       | Los Angeles   | LAX    |
 
 Scenario: Display available destinations on the home page
+Meta:
+@tag layer:web
+
 Given I need to know what cities I can fly to
 When I go to the home page
 Then I should see the list of possibile destinations
