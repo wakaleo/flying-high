@@ -29,7 +29,7 @@ dependencies {
     testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7"
     testCompile 'org.easytesting:fest-assert-core:2.0M10'
     testCompile 'net.thucydides:thucydides-core:0.9.271'
-    testCompile 'net.thucydides:thucydides-jbehave-plugin:0.9.272-SNAPSHOT'
+    testCompile 'net.thucydides:thucydides-jbehave-plugin:0.9.272'
 
 }
 
