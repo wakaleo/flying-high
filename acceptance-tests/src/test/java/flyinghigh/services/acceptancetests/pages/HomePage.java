@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 @DefaultUrl("http://localhost:9001/#/home")
 public class HomePage extends PageObject {
     public List<Airport> getDisplayedAirports() {
+        waitFor(".airport");
         return findAll(".airport")
                 .stream()
                 .map(DisplayedAirport::fromWebElement)
