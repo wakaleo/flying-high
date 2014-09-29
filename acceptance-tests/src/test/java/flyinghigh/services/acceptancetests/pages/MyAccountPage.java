@@ -29,7 +29,6 @@ public class MyAccountPage extends PageObject {
 
     public void waitForDestionionList() {
         waitFor(".possible-destination");
-        waitFor(".serviced-airport");
         waitFor("#departure option");
         waitFor("#destination option");
     }
