@@ -12,6 +12,7 @@ public class MyAccountUISteps {
     @Step
     public void openAccountPage() {
         myAccountPage.open();
+        myAccountPage.waitFor(250).milliseconds();
     }
 
     @Step
