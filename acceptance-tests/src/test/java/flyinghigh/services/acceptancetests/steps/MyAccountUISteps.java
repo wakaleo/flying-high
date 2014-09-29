@@ -12,7 +12,7 @@ public class MyAccountUISteps {
     @Step
     public void openAccountPage() {
         myAccountPage.open();
-        myAccountPage.waitFor(500).milliseconds();
+        myAccountPage.waitForDestionionList();
     }
 
     @Step

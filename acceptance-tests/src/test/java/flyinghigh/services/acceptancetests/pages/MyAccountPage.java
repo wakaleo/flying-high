@@ -26,4 +26,8 @@ public class MyAccountPage extends PageObject {
     public int getPointBalance() {
         return Integer.valueOf($(".status-points-balance").getText());
     }
+
+    public void waitForDestionionList() {
+        waitFor(".possible-destination");
+    }
 }
