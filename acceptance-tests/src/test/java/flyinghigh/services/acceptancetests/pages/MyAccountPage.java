@@ -3,6 +3,7 @@ package flyinghigh.services.acceptancetests.pages;
 import flyinghigh.services.acceptancetests.domain.Airport;
 import javafx.beans.binding.MapExpression;
 import net.thucydides.core.annotations.DefaultUrl;
+import net.thucydides.core.annotations.findby.By;
 import net.thucydides.core.pages.PageObject;
 
 import java.util.List;
@@ -32,5 +33,9 @@ public class MyAccountPage extends PageObject {
         waitFor("#departure option:nth-child(2)");
         waitFor("#destination option:nth-child(2)");
         waitFor(250).milliseconds();
+    }
+
+    public void waitForCalulationResult() {
+        waitForRenderedElements(By.cssSelector(".calculated-points"));
     }
 }

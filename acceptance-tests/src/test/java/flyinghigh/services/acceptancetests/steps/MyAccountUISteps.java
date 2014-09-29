@@ -7,7 +7,6 @@ import static org.fest.assertions.api.Assertions.assertThat;
 
 public class MyAccountUISteps {
 
-    MyAccountPage myAccountPage;
 
     @Step
     public void openAccountPage() {
@@ -15,10 +14,14 @@ public class MyAccountUISteps {
         myAccountPage.waitForFieldsToLoad();
     }
 
+    MyAccountPage myAccountPage;
+
     @Step
-    public int calculatePointsNeededBetween(String departure, String destination) {
+    public int calculatePointsNeededBetween(String departure,
+                                            String destination) {
         myAccountPage.selectDepartureCity(departure);
         myAccountPage.selectDestinationCity(destination);
+        myAccountPage.waitForCalulationResult();
         return myAccountPage.getCalculatedPoints();
     }
 
