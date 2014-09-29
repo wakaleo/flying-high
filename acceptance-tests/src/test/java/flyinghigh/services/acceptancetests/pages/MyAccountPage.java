@@ -27,9 +27,10 @@ public class MyAccountPage extends PageObject {
         return Integer.valueOf($(".status-points-balance").getText());
     }
 
-    public void waitForDestionionList() {
+    public void waitForFieldsToLoad() {
         waitFor(".possible-destination");
-        waitFor("#departure option");
-        waitFor("#destination option");
+        waitFor("#departure option:nth-child(2)");
+        waitFor("#destination option:nth-child(2)");
+        waitFor(250).milliseconds();
     }
 }

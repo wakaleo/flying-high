@@ -54,7 +54,7 @@ test {
     systemProperty 'webdriver.base.url', baseUrl
     systemProperty 'webdriver.driver', driver
     systemProperty 'thucydides.browser.width', 1000
-//    systemProperty 'thucydides.resized.image.width', 1000
+    systemProperty 'thucydides.resized.image.width', 1000
     systemProperty 'dashboard.tag.list', 'capability, layer'
     useJUnit()
 }
