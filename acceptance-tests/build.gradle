@@ -53,9 +53,12 @@ test {
     systemProperty 'webservice.environment', webserviceEnvironment
     systemProperty 'webdriver.base.url', baseUrl
     systemProperty 'webdriver.driver', driver
+    systemProperty 'chrome.binary', '/usr/local/chromedriver'
     systemProperty 'thucydides.browser.width', 1000
     systemProperty 'thucydides.resized.image.width', 1000
     systemProperty 'dashboard.tag.list', 'capability, layer'
+    systemProperty 'dashboard.tag.list', 'capability, layer'
+
     useJUnit()
 }
 
