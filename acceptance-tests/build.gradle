@@ -36,10 +36,10 @@ dependencies {
 
 if (webserviceEnvironment == "dev") {
     baseUrl = 'http://flying-high-dev.cfapps.io'
-    driver = 'firefox'
+    driver = 'chrome'
 } else if (webserviceEnvironment == "prod") {
     baseUrl = 'http://flying-high.cfapps.io'
-    driver = 'firefox'
+    driver = 'chrome'
 }
 
 println "webserviceEnvironment = $webserviceEnvironment"
