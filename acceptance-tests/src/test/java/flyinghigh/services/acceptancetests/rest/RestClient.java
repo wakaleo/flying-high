@@ -17,7 +17,7 @@ public class RestClient {
     private RestTemplate restTemplate = new RestTemplate();
 
     public String getBaseFlightUrl() {
-        String environment =  System.getProperty("webservice.environment","local");
+        String environment =  "dev";//System.getProperty("webservice.environment","local");
         if (environment.equals("local")) {
             return "http://localhost:8090/";
         } else {

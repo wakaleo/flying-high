@@ -3,10 +3,9 @@ Meta:
 @tag layer:web
 
 Narrative:
-In order to know how many points I have earnd
+In order to know how many points I have earned
 As a traveller
 I want to see my total points
-
 
 Scenario: View point balance
 Given Sarah is a Frequent Flyer member with 800 points

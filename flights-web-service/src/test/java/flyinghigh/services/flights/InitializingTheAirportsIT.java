@@ -15,7 +15,6 @@ import java.util.List;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-//
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = FlightsApp.class)
 @WebAppConfiguration
@@ -34,5 +33,4 @@ public class InitializingTheAirportsIT {
         List<Airport> airports = airportRepository.findAll();
         assertThat(airports).isNotEmpty();
     }
-
 }

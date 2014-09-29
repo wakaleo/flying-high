@@ -2,9 +2,9 @@ Earning extra points from Frequent Flyer status
 
 Meta:
 @Versions Release 2
-@tag layer:webservice
+@tag layer:web
 
-Scenario Outline: Earning points on flights by Frequent Flyer status
+Scenario: Earning points on flights by Frequent Flyer status
 Given a member has a status of <initialStatus>
 When I fly on a flight that is worth <base> base points
 Then I should earn a status bonus of <bonus>

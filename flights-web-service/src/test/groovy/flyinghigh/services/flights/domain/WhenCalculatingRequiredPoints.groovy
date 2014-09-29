@@ -9,14 +9,11 @@ class WhenCalculatingRequiredPoints extends Specification {
 
     def routeRepository = Mock(RouteRepository);
 
-    def DISTANCE = 1000
-    def REQUIRED_POINTS = DISTANCE * 2
-
     def sydney = new Airport("Australia","Sydney","SYD")
     def melbourne = new Airport("Australia","Melbourne","MEL")
 
-    def setup() {
-    }
+    def DISTANCE = 1000
+    def REQUIRED_POINTS = DISTANCE * 2
 
     def "Required points should be calculated based on route distance"() {
         given:
@@ -33,7 +30,8 @@ class WhenCalculatingRequiredPoints extends Specification {
     def "Required points should be calculated in both directions"() {
         given:
             routeRepository.findByDepartureCodeAndDestinationCode("SYD","MEL") >> []
-            routeRepository.findByDepartureCodeAndDestinationCode("MEL","SYD") >> [Route.from(sydney).to(melbourne).withDistanceOf(DISTANCE).km()]
+            routeRepository.findByDepartureCodeAndDestinationCode("MEL","SYD") >>
+                    [Route.from(sydney).to(melbourne).withDistanceOf(DISTANCE).km()]
 
             def pointsCalculator = new PointsCalculator(routeRepository)
         when:

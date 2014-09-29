@@ -37,14 +37,8 @@ public class LookingUpAirportsIT {
     @Value("${local.server.port}")
     private int port;
 
-    private RestTemplate restTemplate = new RestTemplate();
-
-    private String baseUrl;
-
     @Before
     public void configureBaseUrl() {
-        baseUrl = "http://localhost:" + port;
-        restTemplate = new RestTemplate();
         databaseSetup.initializeReferenceData();
     }
 

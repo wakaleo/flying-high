@@ -10,7 +10,7 @@ buildscript {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
     dependencies {
-        classpath("net.thucydides:thucydides-core:0.9.271")
+        classpath("net.thucydides:thucydides-core:0.9.272-SNAPSHOT")
     }
 }
 
@@ -28,8 +28,8 @@ dependencies {
     compile("org.springframework.data:spring-data-rest-webmvc:2.2.0.RELEASE")
     testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7"
     testCompile 'org.easytesting:fest-assert-core:2.0M10'
-    testCompile 'net.thucydides:thucydides-core:0.9.271'
-    testCompile 'net.thucydides:thucydides-jbehave-plugin:0.9.272'
+    testCompile 'net.thucydides:thucydides-core:0.9.272-SNAPSHOT'
+    testCompile 'net.thucydides:thucydides-jbehave-plugin:0.9.273-SNAPSHOT'
 
 }
 
@@ -53,10 +53,10 @@ test {
     systemProperty 'webservice.environment', webserviceEnvironment
     systemProperty 'webdriver.base.url', baseUrl
     systemProperty 'webdriver.driver', driver
-    systemProperty 'thucydides.resized.image.width', 1000
-    systemProperty 'dashboard.tag.list', 'capabilities, stories, layer'
+    systemProperty 'thucydides.browser.width', 1000
+//    systemProperty 'thucydides.resized.image.width', 1000
+    systemProperty 'dashboard.tag.list', 'capability, layer'
     useJUnit()
-    maxParallelForks = 4
 }
 
 test.shouldRunAfter clean

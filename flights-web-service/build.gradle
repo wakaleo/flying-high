@@ -35,6 +35,8 @@ dependencies {
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7"
     testCompile 'org.easytesting:fest-assert-core:2.0M10'
+    testCompile 'com.insightfullogic:lambda-behave:0.3'
+    testCompile 'org.mockito:mockito-all:1.9.5'
 }
 
 test {

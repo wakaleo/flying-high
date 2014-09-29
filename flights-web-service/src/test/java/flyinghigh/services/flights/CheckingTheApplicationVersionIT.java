@@ -14,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-//
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = FlightsApp.class)
 @WebAppConfiguration

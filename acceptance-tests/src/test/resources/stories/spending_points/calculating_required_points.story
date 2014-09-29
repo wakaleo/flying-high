@@ -11,7 +11,6 @@ Notes: 2 points required per km
 Scenario: Calculate required points
 Meta:
 @tag layer:web
-2 points required per km
 
 Given I am a frequent flyer
 And I am on the My Account page
