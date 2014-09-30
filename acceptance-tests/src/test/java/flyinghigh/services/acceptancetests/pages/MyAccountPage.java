@@ -36,6 +36,7 @@ public class MyAccountPage extends PageObject {
     }
 
     public void waitForCalulationResult() {
-        waitForRenderedElements(By.cssSelector(".calculated-points"));
+        waitFor(".calculated");
+        waitFor(250).milliseconds();
     }
 }
