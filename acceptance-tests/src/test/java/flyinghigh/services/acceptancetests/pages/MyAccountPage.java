@@ -36,7 +36,7 @@ public class MyAccountPage extends PageObject {
     }
 
     public void waitForCalulationResult() {
-        waitFor(".calculated");
+        waitFor(".requiredPoints");
         waitFor(250).milliseconds();
     }
 }

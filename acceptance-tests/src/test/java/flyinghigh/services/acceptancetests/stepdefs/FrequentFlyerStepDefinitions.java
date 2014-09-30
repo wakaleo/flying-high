@@ -29,13 +29,11 @@ public class FrequentFlyerStepDefinitions {
         restClient.updatePointsFor(frequentFlyer.getNumber(), points);
     }
 
-    @When("Sarah views her account details")
-    public void viewAccountDetails() {
-        sarah.openAccountPage();
-    }
-
-    @Then("she should see an account balance of $expectedPoints points")
-    public void shouldSeePointBalanceOf(int expectedPoints) {
-        sarah.shouldSeeAccountBalanceOf(expectedPoints);
-    }
+//    @When("Sarah views her account details")
+//    public void viewAccountDetails() {
+//    }
+//
+//    @Then("she should see an account balance of $expectedPoints points")
+//    public void shouldSeePointBalanceOf(int expectedPoints) {
+//    }
 }
