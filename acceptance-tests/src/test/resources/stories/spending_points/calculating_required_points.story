@@ -21,6 +21,7 @@ Examples:
 |Sydney     |Melbourne     |1700          |
 |Melbourne  |Wellington    |4400          |
 
+
 Scenario: Required points between different destinations
 Meta:
 @tag layer:webservice
@@ -38,3 +39,4 @@ Examples:
 |BNE        |SYD           |1700          |
 |BNE        |LAX           |12400         |
 |LAX        |BNE           |12400         |
+
