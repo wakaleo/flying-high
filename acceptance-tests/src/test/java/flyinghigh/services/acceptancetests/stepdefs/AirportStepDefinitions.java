@@ -11,6 +11,7 @@ import flyinghigh.services.acceptancetests.steps.AirportClientSteps;
 import flyinghigh.services.acceptancetests.steps.MyAccountUISteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Pending;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
@@ -44,21 +45,27 @@ public class AirportStepDefinitions {
     public void givenAFrequentFlyer() {
     }
 
+    @Pending
     @Given("$frequentFlyer is a Frequent Flyer member with $points points")
     public void giveSarahSomePoints(String name, int points) throws URISyntaxException {
-        FrequentFlyer frequentFlyer = FrequentFlyer.valueOf(name);
-        restClient.updatePointsFor(frequentFlyer.getNumber(), points);
+//  TODO
+//        FrequentFlyer frequentFlyer = FrequentFlyer.valueOf(name);
+//        restClient.updatePointsFor(frequentFlyer.getNumber(), points);
     }
 
 
+    @Pending
     @Then("she should see an account balance of $expectedPoints points")
     public void shouldSeePointBalanceOf(int expectedPoints) {
-        sarah.shouldSeeAccountBalanceOf(expectedPoints);
+//  TODO
+//        sarah.shouldSeeAccountBalanceOf(expectedPoints);
     }
 
+    @Pending
     @Then("she should see a home city of $homeCity")
     public void shouldSeeHomeCityOf(String homeCity) {
-        sarah.shouldSeeHomeCity(homeCity);
+    // TODO
+    //    sarah.shouldSeeHomeCity(homeCity);
     }
 
     @Given("I need to know what cities I can fly to")

@@ -27,11 +27,13 @@ public class RouteStepDefinitions {
     }
     @When("I calculate the number of required points")
     public void calculateRequiredPoints() {
-        calculatedPoints = restClient.calculateRequiredPoints(departure, destination);
+// TODO
+//       calculatedPoints = restClient.calculateRequiredPoints(departure, destination);
     }
 
     @Then("I should obtain <requiredPoints>")
     public void checkCalculatedPoints(int requiredPoints) {
-        assertThat(calculatedPoints).isEqualTo(requiredPoints);
+// TODO
+//        assertThat(calculatedPoints).isEqualTo(requiredPoints);
     }
 }

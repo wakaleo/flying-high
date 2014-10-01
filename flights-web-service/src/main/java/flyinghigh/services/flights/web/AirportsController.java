@@ -27,7 +27,11 @@ public class AirportsController {
 
     @RequestMapping("/rest/api/airports/search/findByCode")
     public Airport findByCode(@RequestParam("code") String code) {
-        return airportRepository.findByCode(code).get(0);
+        List<Airport> matchingAirports = airportRepository.findByCode(code);
+        if (matchingAirports.isEmpty()) {
+            throw new UnknownAirportException(code);
+        }
+        return matchingAirports.get(0);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/rest/api/airports/reset")

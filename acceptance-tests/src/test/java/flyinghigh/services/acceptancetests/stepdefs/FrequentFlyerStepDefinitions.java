@@ -5,6 +5,7 @@ import flyinghigh.services.acceptancetests.rest.RestClient;
 import flyinghigh.services.acceptancetests.steps.MyAccountUISteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Pending;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
@@ -26,13 +27,13 @@ public class FrequentFlyerStepDefinitions {
     MyAccountUISteps sarah;
 
     @Given("$frequentFlyer is a Frequent Flyer member")
-    public void giveSarahSomePoints(String name) throws URISyntaxException {
-        FrequentFlyer frequentFlyer = FrequentFlyer.valueOf(name);
-    }
+    public void giveSarahSomePoints(FrequentFlyer frequentFlyer) {}
 
+    @Pending
     @When("she views her account details")
     public void viewAccountDetails() {
-        sarah.openAccountPage();
+//  TODO
+//        sarah.openAccountPage();
     }
 
 

@@ -33,13 +33,15 @@ public class MyAccountStepUIDefinitions {
 
     @When("I calculate the points needed to go from <departure> to <destination>")
     public void calculatePointsNeeded(String departure, String destination) {
-        calculatedPoints = myAccountSteps.calculatePointsNeededBetween(departure,
-                                                                       destination);
+//        TODO
+//        calculatedPoints = myAccountSteps.calculatePointsNeededBetween(departure,
+//                                                                       destination);
     }
 
     @Then("I should see <requiredPoints> points")
     public void shouldSeeRequiredPoints(int requiredPoints) {
-        assertThat(calculatedPoints).isEqualTo(requiredPoints);
+// TODO
+//        assertThat(calculatedPoints).isEqualTo(requiredPoints);
     }
 
 
