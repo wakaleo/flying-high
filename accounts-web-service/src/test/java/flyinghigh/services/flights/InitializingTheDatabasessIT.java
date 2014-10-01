@@ -1,7 +1,7 @@
 package flyinghigh.services.flights;
 
 import flyinghigh.services.accounts.AccountsApp;
-import flyinghigh.services.accounts.domain.FrequentFlyerAccount;
+import flyinghigh.services.accounts.domain.FrequentFlyerMember;
 import flyinghigh.services.accounts.repositories.AccountRepository;
 import flyinghigh.services.accounts.services.database.DatabaseSetup;
 import org.junit.Test;
@@ -32,7 +32,7 @@ public class InitializingTheDatabasessIT {
     @Test
     public void should_instantiate_database_with_a_few_frequent_flyers() {
         databaseSetup.initializeAccounts();
-        List<FrequentFlyerAccount> accounts = accountRepository.findAll();
+        List<FrequentFlyerMember> accounts = accountRepository.findAll();
         assertThat(accounts).isNotEmpty();
     }
 

@@ -1,7 +1,6 @@
 package flyinghigh.services.accounts.web;
 
-import com.google.common.collect.ImmutableList;
-import flyinghigh.services.accounts.domain.FrequentFlyerAccount;
+import flyinghigh.services.accounts.domain.FrequentFlyerMember;
 import flyinghigh.services.accounts.repositories.AccountRepository;
 import flyinghigh.services.accounts.services.database.DatabaseSetup;
 import flyinghigh.services.accounts.services.destinations.DestinationsCalculatorService;
@@ -27,12 +26,12 @@ public class AccountsController {
     private DestinationsCalculatorService destinationsCalculatorService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/{number}")
-    public FrequentFlyerAccount viewAccount(@PathVariable String number) {
+    public FrequentFlyerMember viewAccount(@PathVariable String number) {
         return accountRepository.findByAccountNumber(number);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "")
-    public List<FrequentFlyerAccount> listAllAccounts() {
+    public List<FrequentFlyerMember> listAllAccounts() {
         return accountRepository.findAll();
     }
 
@@ -43,7 +42,7 @@ public class AccountsController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{number}/possibleDestinations")
     public List<String> findPossibleDestinations(@PathVariable String number) {
-        FrequentFlyerAccount currentAccount = accountRepository.findByAccountNumber(number);
+        FrequentFlyerMember currentAccount = accountRepository.findByAccountNumber(number);
         return destinationsCalculatorService.findPossibleDestinations(currentAccount.getHomeAirportCode(), currentAccount.getStatusPoints());
     }
 

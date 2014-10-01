@@ -1,7 +1,7 @@
 package flyinghigh.services.flights;
 
 import flyinghigh.services.accounts.AccountsApp;
-import flyinghigh.services.accounts.domain.FrequentFlyerAccount;
+import flyinghigh.services.accounts.domain.FrequentFlyerMember;
 import flyinghigh.services.accounts.repositories.AccountRepository;
 import flyinghigh.services.accounts.services.database.DatabaseSetup;
 import org.junit.Before;
@@ -51,13 +51,13 @@ public class LookingUpAccountsIT {
 
     @Test
     public void should_find_a_user_with_a_given_account_number() {
-        FrequentFlyerAccount account = accountRepository.findByAccountNumber("123456");
+        FrequentFlyerMember account = accountRepository.findByAccountNumber("123456");
         assertThat(account.getFirstName()).isEqualTo("Sarah-Jane");
     }
 
     @Test
     public void should_list_all_known_accounts() {
-        List<FrequentFlyerAccount> account = accountRepository.findAll();
+        List<FrequentFlyerMember> account = accountRepository.findAll();
         assertThat(account).isNotEmpty();
     }
 
