@@ -4,14 +4,18 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import flyinghigh.services.acceptancetests.domain.Airport;
+import flyinghigh.services.acceptancetests.domain.FrequentFlyer;
 import flyinghigh.services.acceptancetests.pages.DisplayedAirport;
+import flyinghigh.services.acceptancetests.rest.RestClient;
 import flyinghigh.services.acceptancetests.steps.AirportClientSteps;
+import flyinghigh.services.acceptancetests.steps.MyAccountUISteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
 
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collector;
@@ -28,6 +32,34 @@ public class AirportStepDefinitions {
 
     @Steps
     AirportClientSteps airportClientSteps;
+
+
+    @Steps
+    RestClient restClient;
+
+    @Steps
+    MyAccountUISteps sarah;
+
+    @Given("I am a frequent flyer")
+    public void givenAFrequentFlyer() {
+    }
+
+    @Given("$frequentFlyer is a Frequent Flyer member with $points points")
+    public void giveSarahSomePoints(String name, int points) throws URISyntaxException {
+        FrequentFlyer frequentFlyer = FrequentFlyer.valueOf(name);
+        restClient.updatePointsFor(frequentFlyer.getNumber(), points);
+    }
+
+
+    @Then("she should see an account balance of $expectedPoints points")
+    public void shouldSeePointBalanceOf(int expectedPoints) {
+        sarah.shouldSeeAccountBalanceOf(expectedPoints);
+    }
+
+    @Then("she should see a home city of $homeCity")
+    public void shouldSeeHomeCityOf(String homeCity) {
+        sarah.shouldSeeHomeCity(homeCity);
+    }
 
     @Given("I need to know what cities I can fly to")
     public void givenINeedToKnowWhatCitiesICanFlyTo() {

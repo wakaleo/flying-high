@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -22,6 +23,11 @@ public class AirportsController {
     @RequestMapping("/rest/api/airports")
     public List<Airport> listAirports() {
         return airportRepository.findAll(new Sort("name"));
+    }
+
+    @RequestMapping("/rest/api/airports/search/findByCode")
+    public Airport findByCode(@RequestParam("code") String code) {
+        return airportRepository.findByCode(code).get(0);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/rest/api/airports/reset")

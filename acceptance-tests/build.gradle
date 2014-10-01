@@ -30,6 +30,8 @@ dependencies {
     testCompile 'org.easytesting:fest-assert-core:2.0M10'
     testCompile 'net.thucydides:thucydides-core:0.9.273'
     testCompile 'net.thucydides:thucydides-jbehave-plugin:0.9.273'
+    testCompile 'org.jbehave:jbehave:3.9.4'
+    testCompile 'com.thoughtworks.paranamer:paranamer:2.7'
 
 }
 

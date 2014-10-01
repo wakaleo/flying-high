@@ -9,5 +9,5 @@ I want to see my total points
 
 Scenario: View point balance
 Given Sarah is a Frequent Flyer member with 800 points
-When Sarah views her account details
+When she views her account details
 Then she should see an account balance of 800 points

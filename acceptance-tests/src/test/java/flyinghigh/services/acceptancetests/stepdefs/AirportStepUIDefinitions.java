@@ -6,6 +6,7 @@ import flyinghigh.services.acceptancetests.pages.HomePage;
 import flyinghigh.services.acceptancetests.pages.MyAccountPage;
 import flyinghigh.services.acceptancetests.rest.RestClient;
 import flyinghigh.services.acceptancetests.steps.AirportClientSteps;
+import flyinghigh.services.acceptancetests.steps.MyAccountUISteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -15,6 +16,8 @@ import org.jbehave.core.model.ExamplesTable;
 import java.util.List;
 import java.util.Map;
 
+import static flyinghigh.services.acceptancetests.stepdefs.AirportTableUtils.airportNamesFrom;
+import static java.util.stream.Collectors.toList;
 import static org.fest.assertions.api.Assertions.assertThat;
 
 
@@ -27,6 +30,9 @@ public class AirportStepUIDefinitions {
 
     @Steps
     AirportClientSteps airportClientSteps;
+
+    @Steps
+    MyAccountUISteps sarah;
 
     HomePage homePage;
     MyAccountPage myAccountPage;
@@ -46,6 +52,8 @@ public class AirportStepUIDefinitions {
         assertThat(displayedAirports).containsAll(expectedAirports);
     }
 
-
-
+    @Then("the following destination airports: $airports")
+    public void shouldSeeAirports(ExamplesTable airports) {
+        sarah.shouldSeePossibleDestinations(airportNamesFrom(airports));
+    }
 }

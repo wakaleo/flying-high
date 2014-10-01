@@ -1,6 +1,5 @@
 Meta:
 @Versions Release 1, Iteration 1.0
-@tag layer:webservice
 
 Narrative:
 In order to know where I can fly
@@ -9,6 +8,9 @@ I want to know what airports are served by Flying High flights
 
 
 Scenario: List serviced airports
+Meta:
+@tag layer:webservice
+
 Given I need to know what cities I can fly to
 When I ask for a list of airports
 Then I should obtain at least the following:

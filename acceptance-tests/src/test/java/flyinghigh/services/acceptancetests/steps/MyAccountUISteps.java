@@ -3,6 +3,8 @@ package flyinghigh.services.acceptancetests.steps;
 import flyinghigh.services.acceptancetests.pages.MyAccountPage;
 import net.thucydides.core.annotations.Step;
 
+import java.util.List;
+
 import static org.fest.assertions.api.Assertions.assertThat;
 
 public class MyAccountUISteps {
@@ -27,8 +29,16 @@ public class MyAccountUISteps {
 
     @Step
     public void shouldSeeAccountBalanceOf(int expectedPoints) {
-//        assertThat(myAccountPage.getPointBalance()).isEqualTo(expectedPoints);
+        assertThat(myAccountPage.getPointBalance()).isEqualTo(expectedPoints);
     }
 
+    @Step
+    public void shouldSeeHomeCity(String expectedHomeCity) {
+        assertThat(myAccountPage.getHomeCity()).isEqualTo(expectedHomeCity);
+    }
 
+    @Step
+    public void shouldSeePossibleDestinations(List<String> expectedAirports) {
+        assertThat(myAccountPage.getPossibleDestinations()).containsAll(expectedAirports);
+    }
 }

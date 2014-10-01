@@ -11,4 +11,5 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "airports", path = "airports")
 public interface AirportRepository extends MongoRepository<Airport, String> {
     List<Airport> findByName(@Param("name") String name);
+    List<Airport> findByCode(@Param("code") String code);
 }
