@@ -9,14 +9,13 @@ import static org.fest.assertions.api.Assertions.assertThat;
 
 public class MyAccountUISteps {
 
+    MyAccountPage myAccountPage;
 
     @Step
     public void openAccountPage() {
         myAccountPage.open();
         myAccountPage.waitForFieldsToLoad();
     }
-
-    MyAccountPage myAccountPage;
 
     @Step
     public int calculatePointsNeededBetween(String departure,
@@ -29,19 +28,16 @@ public class MyAccountUISteps {
 
     @Step
     public void shouldSeeAccountBalanceOf(int expectedPoints) {
-    // TODO
-    //    assertThat(myAccountPage.getPointBalance()).isEqualTo(expectedPoints);
+        assertThat(myAccountPage.getPointBalance()).isEqualTo(expectedPoints);
     }
 
     @Step
     public void shouldSeeHomeCity(String expectedHomeCity) {
-    //  TODO
-    //    assertThat(myAccountPage.getHomeCity()).isEqualTo(expectedHomeCity);
+        assertThat(myAccountPage.getHomeCity()).isEqualTo(expectedHomeCity);
     }
 
     @Step
     public void shouldSeePossibleDestinations(List<String> expectedAirports) {
-    // TODO
-    //    assertThat(myAccountPage.getPossibleDestinations()).containsAll(expectedAirports);
+        assertThat(myAccountPage.getPossibleDestinations()).containsAll(expectedAirports);
     }
 }

@@ -2,8 +2,11 @@ package flyinghigh.services.flights;
 
 import flyinghigh.services.accounts.AccountsApp;
 import flyinghigh.services.accounts.domain.FrequentFlyerMember;
+import flyinghigh.services.accounts.domain.Status;
 import flyinghigh.services.accounts.repositories.AccountRepository;
 import flyinghigh.services.accounts.services.database.DatabaseSetup;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -59,6 +62,19 @@ public class LookingUpAccountsIT {
     public void should_list_all_known_accounts() {
         List<FrequentFlyerMember> account = accountRepository.findAll();
         assertThat(account).isNotEmpty();
+    }
+
+    @Test
+    public void should_read_account_details_via_the_web_service() {
+        String url = getResultUrl(restTemplate.getForObject(baseUrl + "/accounts/search/findByAccountNumber?number={number}", JSONObject.class, "123456"));
+        FrequentFlyerMember member = restTemplate.getForObject(url, FrequentFlyerMember.class);
+
+        assertThat(member.getFirstName()).isEqualTo("Sarah-Jane");
+        assertThat(member.getStatus()).isEqualTo(Status.Silver);
+    }
+
+    private String getResultUrl(JSONObject result) {
+        return ((JSONObject)((JSONArray)result.get("links")).get(0)).get("href").toString();
     }
 
 }

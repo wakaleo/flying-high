@@ -1,9 +1,11 @@
 package flyinghigh.services.accounts.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.Id;
 
 import java.lang.String;
 
+@JsonIgnoreProperties({"_links"})
 public class FrequentFlyerMember {
     @Id
     private String id;

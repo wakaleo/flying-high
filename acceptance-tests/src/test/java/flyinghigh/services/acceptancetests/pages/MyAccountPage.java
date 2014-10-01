@@ -32,9 +32,9 @@ public class MyAccountPage extends PageObject {
     }
 
     public void waitForFieldsToLoad() {
-        waitFor(".possible-destination");
-        waitFor("#departure option:nth-child(2)");
-        waitFor("#destination option:nth-child(2)");
+//        waitFor(".possible-destination");
+//        waitFor("#departure option:nth-child(2)");
+//        waitFor("#destination option:nth-child(2)");
         waitFor(250).milliseconds();
     }
 

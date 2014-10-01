@@ -10,7 +10,8 @@ class WhenManagingFrequentFlyerMemberStatusUpdates extends Specification {
 
     def "A frequent flyer requires a first name, a last name, and a frequent flyer number"() {
         when:
-            def member = FrequentFlyerMember.withFrequentFlyerNumber("12345678").named("Joe","Bloggs")
+            def member = FrequentFlyerMember.withFrequentFlyerNumber("12345678")
+                                            .named("Joe","Bloggs")
         then:
             member.accountNumber == "12345678"
         and:

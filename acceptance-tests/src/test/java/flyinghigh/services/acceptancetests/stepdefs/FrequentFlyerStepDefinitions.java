@@ -29,11 +29,9 @@ public class FrequentFlyerStepDefinitions {
     @Given("$frequentFlyer is a Frequent Flyer member")
     public void giveSarahSomePoints(FrequentFlyer frequentFlyer) {}
 
-    @Pending
     @When("she views her account details")
     public void viewAccountDetails() {
-//  TODO
-//        sarah.openAccountPage();
+        sarah.openAccountPage();
     }
 
 

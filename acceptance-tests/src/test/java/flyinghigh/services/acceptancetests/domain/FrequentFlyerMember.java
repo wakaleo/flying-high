@@ -13,6 +13,7 @@ public class FrequentFlyerMember {
     private String lastName;
     private String homeAirportCode;
     private int statusPoints;
+    private String status;
 
     public FrequentFlyerMember() {
     }
@@ -63,5 +64,13 @@ public class FrequentFlyerMember {
 
     public void setHomeAirportCode(String homeAirportCode) {
         this.homeAirportCode = homeAirportCode;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

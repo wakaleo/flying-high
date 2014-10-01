@@ -45,20 +45,15 @@ public class AirportStepDefinitions {
     public void givenAFrequentFlyer() {
     }
 
-    @Pending
     @Given("$frequentFlyer is a Frequent Flyer member with $points points")
-    public void giveSarahSomePoints(String name, int points) throws URISyntaxException {
-//  TODO
-//        FrequentFlyer frequentFlyer = FrequentFlyer.valueOf(name);
-//        restClient.updatePointsFor(frequentFlyer.getNumber(), points);
+    public void giveSarahSomePoints(FrequentFlyer flyer, int points) throws URISyntaxException {
+        restClient.updatePointsFor(flyer.getNumber(), points);
     }
 
 
-    @Pending
     @Then("she should see an account balance of $expectedPoints points")
     public void shouldSeePointBalanceOf(int expectedPoints) {
-//  TODO
-//        sarah.shouldSeeAccountBalanceOf(expectedPoints);
+        sarah.shouldSeeAccountBalanceOf(expectedPoints);
     }
 
     @Pending
