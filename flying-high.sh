@@ -4,7 +4,7 @@ startMongo() {
 }
 
 stopMongo() {
-	mongod --shutdown
+	pkill mongod
 }
 
 startAccountsService() {
