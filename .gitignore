@@ -7,4 +7,8 @@ build
 .gradle
 *.log
 *.iws
+dist
+node_modules
+.idea
+test-results.xml
 gradle.properties

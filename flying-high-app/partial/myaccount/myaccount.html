@@ -1,0 +1,63 @@
+<div class="col-md-12" ng-controller="MyAccountCtrl">
+
+    <div class="jumbotron">
+        <div class="container">
+            <h2>My Account</h2>
+
+            <h4>Welcome <span ng-bind="account.firstName"></span> </h4>
+
+            <p><span ng-bind="account.firstName"></span> <span ng-bind="account.lastName"></span> - <span class="status-points-balance"> <span ng-bind="account.statusPoints"></span></span></span> points - <span ng-bind="account.status"></p>
+        </div>
+    </div>
+
+    <h3>What could I do?</h3>
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-1">
+                <icon class="fa fa-5x fa-plane"></icon>
+            </div>
+            <div class="col-md-5">
+                <h4>Where can you go?</h4>
+                <p>From <span id="home-city">{{homeAirport.name}}</span> you could go to the following destinations:
+                <ul>
+                    <li class="possible-destination" ng-repeat="destination in possibleDestinations"><span class="possible-destination-name">{{destination.name}}</span> ({{destination.code}})
+                    </li>
+                </ul>
+                </p>
+            </div>
+            <div class="col-md-1">
+                <icon class="fa fa-5x fa-question"></icon>
+            </div>
+            <div class="col-md-5">
+                <h4>Where would you like to go?</h4>
+                <div ng-controller="PointsCalculatorCtrl">
+                    <p>
+                    Departure:
+                        <select id="departure"
+                                ng-options="airport.name for airport in departureAirports"
+                                ng-model="selectedDeparture"
+                                ng-change="calculatePoints()"></select>
+                    </p>
+                    <p>
+                    Destination: <select id="destination"
+                                         ng-options="airport.name for airport in destinationAirports"
+                                         ng-model="selectedDestination"
+                                         ng-change="calculatePoints()"></select>
+                    </p>
+                    <div ng-show="servicedRoute">
+                        <div class="calculated-points" ng-show="selectedDeparture && selectedDestination && (selectedDeparture != selectedDestination) && (requiredPoints != 0)">
+                            <p>To go from {{selectedDeparture.name}} to {{selectedDestination.name}} you will need <span class="requiredPoints"><span ng-bind="requiredPoints"></span></span> points</p>
+                            <button ng-click="resetAirports()">Reset Airports</button>
+                        </div>
+                    </div>
+                    <div ng-show="selectedDeparture && selectedDestination && !servicedRoute">
+                        Sorry, we don't fly between {{selectedDeparture.name}} and {{selectedDestination.name}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

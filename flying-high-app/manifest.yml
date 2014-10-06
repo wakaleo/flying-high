@@ -1,0 +1,5 @@
+---
+applications:
+- name: flying-high-app
+  command: node web.js
+  buildpack: https://github.com/cloudfoundry/heroku-buildpack-nodejs.git

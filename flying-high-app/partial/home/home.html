@@ -1,0 +1,12 @@
+<div class="col-md-12" ng-controller="HomeCtrl">
+    <h2>Welcome to the Flying High Frequent Flyers site!</h2>
+    <p>
+    We proudly fly to the following destinations:
+    <ul>
+    <li ng-repeat="airport in airports" class="serviced-airport">
+        <span class="airport-name">{{airport.name}}</span>,
+        <span class="airport-country">{{airport.country}}</span>
+        [<span class="airport-code">{{airport.code}}</span>]</li>
+    </ul>
+    </p>
+</div>
