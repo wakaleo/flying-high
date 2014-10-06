@@ -6,6 +6,7 @@ build
 .idea
 .gradle
 *.log
+mongodb.log.*
 *.iws
 dist
 node_modules
