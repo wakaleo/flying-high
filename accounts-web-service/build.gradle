@@ -99,8 +99,8 @@ if (project.hasProperty('production')) {
 cloudfoundry {
     target = 'https://api.run.pivotal.io'
     application = 'accounts'
-    username = 'john.smart@wakaleo.com'
-    password = 'nos-bak-yac-yu-i'
+    username = cfUsername
+    password = cfPassword
     file = file("${jar.archivePath}")
     buildpack = 'https://github.com/cloudfoundry/java-buildpack'
     services {
