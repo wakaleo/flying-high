@@ -8,6 +8,6 @@ import net.thucydides.jbehave.ThucydidesJUnitStories;
 public class ManagingAirports extends ThucydidesJUnitStories {
 
     public ManagingAirports() {
-        this.findStoriesIn("stories/managing_airports");
+        findStoriesIn("stories/managing_airports");
     }
 }

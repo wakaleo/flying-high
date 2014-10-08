@@ -8,4 +8,4 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource(collectionResourceRel = "accounts", path = "accounts")
 public interface AccountRepository extends MongoRepository<FrequentFlyerMember, String> {
     FrequentFlyerMember findByAccountNumber(@Param("number") String number);
-}
+    FrequentFlyerMember findByFirstNameAndLastName(@Param("firstName") String firstName, @Param("lasttName") String lastName);}

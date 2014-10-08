@@ -9,6 +9,6 @@ import net.thucydides.jbehave.ThucydidesJUnitStory;
 public class EarningPoints extends ThucydidesJUnitStories {
 
     public EarningPoints() {
-        this.findStoriesIn("stories/earning_points");
+        findStoriesIn("stories/earning_points");
     }
 }

@@ -8,6 +8,6 @@ import net.thucydides.jbehave.ThucydidesJUnitStories;
 public class SpendingPoints extends ThucydidesJUnitStories {
 
     public SpendingPoints() {
-        this.findStoriesIn("stories/spending_points");
+        findStoriesIn("stories/spending_points");
     }
 }

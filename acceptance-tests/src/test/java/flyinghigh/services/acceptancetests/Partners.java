@@ -8,6 +8,6 @@ import net.thucydides.jbehave.ThucydidesJUnitStories;
 public class Partners extends ThucydidesJUnitStories {
 
     public Partners() {
-        this.findStoriesIn("stories/partners");
+        findStoriesIn("stories/partners");
     }
 }
